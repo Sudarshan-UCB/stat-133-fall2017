@@ -1,0 +1,66 @@
+---
+title: "Warm Up 01"
+author: "Sudarshan Srirangapatanam"
+output: html_document
+---
+
+## Cooking Recipe
+![Tomato Basil Pasta][1]\
+**Tomato Basil Pasta**
+
+#### Ingredients
+* Grated Cheese
+* Salt and Pepper
+* Pasta Penne
+* Fresh Basil
+* Diced tomatoes
+* Baby tomatoes
+* Chopped onion
+* Olive oil
+* Crushed garlic
+
+#### Prep Work
+1. Crush about 2 colves of garlic
+2. Finely chop onions
+3. Cut baby tomatoes in half
+
+#### Directions
+1. Add 5 tablespoons of olive oil to a pan
+2. Add onion and garlic and let it cook until onions change color
+3. Boil a large pot of salted water and then cook pasta penne
+4. Drain and then mix it with the other pan
+5. Add baby tomatoes, basil and stirr until completely mixed
+6. Place the pan on low heat and add grated cheese
+7. Season with salt and pepper
+8. Mix one last time and Tomato Basil Pasta is ready to serve
+
+**When to Use it?**\
+This is a quick recipe that works consistently everytime, so I recommend using this when you have very little time and would like to make something in about 20-30 minutes. You can use it in any season with ingredients readily available at your local grocery store.
+
+**Variations:** You can aslways try the same recipe with different kinds of pasta to give a slightly different flavor.
+
+## Quadratic Equation
+
+Quadratic equation is any equation with the form $ax^2 + bx + c = 0$.\
+Here, a, b and c are coefficients that can take any real value such that $a \neq 0$.
+
+To find the roots of the equations, i.e. x-intercepts or the values fo x for which the equation results in value 0, we can use quadratic formula for the roots:
+$$ x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a} $$
+
+## Comments and Reflections
+
+Keeping the paragraphs and line breaks organized took some time since the line breaks we are used to from word simply spits out a large paragraph of text. Even though I have used markdown before it took some time to get back to the flow, however, a new syntax that I learned is the use of *backslash* to indicate line breaks. Before this assignment I used to add double space which was hard to find when viewing the file in plain text mode, I can now find the line breaks much faster.
+
+I used 2 links to help me with the assignment, the first resource was [R Markdown cheatsheet][2] to refresh my memory.
+The other was for [latex notations][3] to find the notation for $\neq$ and $\pm$.
+
+## GitHub Information
+
+My GitHub username is **shrinisudi** and for this class I have created a repo under **Sudarshan-UCB** organization which I will be using to submit my work. This is so that I can better organize my repos.
+
+My repo for this class is [Sudarshan-UCB/stat-133-fall2017][4]
+
+[1]: http://www.recipe4living.com/assets/itemimages/400/400/3/default_5d70e627773fd9ef436a1f7b5dc65c7b_Depositphotos_48898807_s.jpg
+[2]: https://www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf
+[3]: https://oeis.org/wiki/List_of_LaTeX_mathematical_symbols
+[4]: https://github.com/Sudarshan-UCB/stat-133-fall2017
