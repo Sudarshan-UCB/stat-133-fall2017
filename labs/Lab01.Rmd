@@ -1,0 +1,129 @@
+---
+title: "Lab 1: Basics of R"
+subtitle: "Stat 133, Fall 2017"
+author: "Sudarshan Srirangapatanam"
+date: "September 1, 2017"
+output: html_document
+---
+## Expenses
+
+```{r expenses}
+phone <- 80
+transportation <- 20
+groceries <- 527
+gym <- 10
+rent <- 1500
+other <- 83
+
+total <- phone + transportation + groceries + gym + rent + other # Total Expenses
+semester <- total * 5 # Semester Expenses
+year <- total * 10 # Year Expenses
+
+expenses <- c("Phone" = phone, "Transportation" = transportation, "Groceries" = groceries, "Gym" = gym, "Rent" = rent, "Other" = other)
+sorted_exp <- sort(expenses, decreasing = TRUE) # Sorting expenses
+```
+
+Total Expenses = `r total`\
+Semester Expenses = `r semester`\
+Year Expenses = `r year`
+
+Expenses Vector:\
+`r expenses`
+
+**Barplot and plot sorted plus text:**
+
+```{r barplot}
+barplot(expenses, names.arg = "")
+
+bar_plot <- barplot(sorted_exp, ylim = c(0, 2000))
+plot_text <- bar_plot + text(bar_plot, sorted_exp, labels = sorted_exp, pos = 3)
+```
+
+## Pythagoras formula
+
+```{r pythagoras}
+a <- 3
+b <- 4
+c <- sqrt(a^2 + b^2)
+```
+
+$$c = \sqrt{a^2 + b^2}$$
+a = `r a`, b = `r b`, c = `r c`
+
+## Binomial Formula
+
+```{r binom, echo}
+n <- 5 # number of trials
+k <- 2 # number of successes
+p <- .5 # prob. of a success
+
+## using factorial method
+n_k <- factorial(n)/(factorial(k)*factorial(n-k))
+coin_fact <- n_k * p^k * p^(n-k)
+
+## using choose method
+coin_choose <- choose(n, k) * p^k * p^(n-k)
+
+dice_choose <- choose(10, 3) * (1/6)^3 * (1 - 1/6)^(10-3) # 3 out of 10 six on a dice
+
+## using dbinom method
+coin_binom <- dbinom(2, 5, .5) # 2 out of 5 heads
+dice_binom <- dbinom(3, 10, 1/6) # 3 out of 10 six on a dice
+dice_binom_three <- dbinom(3, 3, 1/6) # 3 out of 3 six on a dice
+
+# To calculate probability with baised coing P(head) = .35
+coin_baised <- dbinom(2, 5, .35)
+
+# More than 3 heads with P(head) = .35
+coin_sum <- dbinom(4, 5, .35) + dbinom(5, 5, .35) # OR
+coin_sum_cdf <- 1 - pbinom(3, 5, .35)
+
+# Installing package
+#install.packages("stringr")
+#install.packages("RColorBrewer")
+#install.packages("XML")
+
+# Calculating 3x^2 + 4x + 8
+x <- 2
+eqn_two <- 3*x^2 + 4*x + 8
+
+y <- (-3:3)
+eqn_series <- 3*y^2 + 4*y + 8
+```
+
+$$Pr(k;n,p) = Pr(X = k) = {n \choose k}p^k (1-p)^{n-k}$$
+**2 heads out of 5 coin tosses:**
+
+* Using factorial() method:\
+  $Pr(2, 5, .5)$ = `r coin_fact`
+* Using choose() method:\
+  $Pr(2, 5, .5)$ = `r coin_choose`
+* Using dbinom() method:\
+  $Pr(2, 5, .5)$ = `r coin_binom`
+
+**3 sixes out of 10 dice throws:**
+
+* Using choose() method:\
+  $Pr(3, 10, \frac{1}{6})$ = `r dice_choose`
+* Using dbinom() method:\
+  $Pr(3, 10, \frac{1}{6})$ = `r dice_binom`
+  
+**3 sixes out of 3 dice throws:**
+
+* using dbinom() method:\
+  $Pr(3, 3, \frac{1}{6})$ = `r dice_binom_three`
+
+**Coin tosses of a baised coin Pr(heads) = .35:**
+
+* $Pr(2,5,.35)$ = `r coin_baised`
+* Using dbinom() method:\
+  $Pr(X > 3) = Pr(4, 5, .35) + Pr(5, 5, .35)$ = `r coin_sum`
+* Using pbinom() method:\
+  $Pr(X > 3) = 1 - Pr(X \leq 3)$ = `r coin_sum_cdf`
+  
+**Calculating $3x^2 + 4x + 8$:**
+
+* When x = 2,\
+  $3x^2 + 4x + 8$ = `r eqn_two`
+* When x is a series from -3 to 3,\
+  $3x^2 + 4x + 8$ = [`r eqn_series`]
