@@ -1,7 +1,6 @@
 Lab 1: Basics of R
 ================
 Sudarshan Srirangapatanam
-September 1, 2017
 
 Expenses
 --------
