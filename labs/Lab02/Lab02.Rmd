@@ -27,7 +27,7 @@ four <- player[1:4] # First four players
 
 ## Variable used and descriptions
 
-Data is taken from `https://github.com/ucb-stat133/stat133-fall-2017/raw/master/data/nba2017-salary-points.RData`
+Data is taken from [`nba2017-salary-points`](https://github.com/Sudarshan-UCB/stat-133-fall2017/blob/master/labs/Lab02/data/nba2017-salary-points.RData)
 
 - `player`: name of the player.<br>
   Class of object: `r class(player)`<br>
@@ -89,12 +89,12 @@ Data is taken from `https://github.com/ucb-stat133/stat133-fall-2017/raw/master/
   `r four[-c(1,2,3)]`<br>
   All indexes associated with negative is removed.
 
-- an index greater than the length of the vector: `four[5]`?
+- an index greater than the length of the vector: `four[5]`?<br>
   `r four[5]`<br>
   We always get a "NA" as an answer.
   
-- repeated indices: `four[c(1,2,2,3,3,3)]`?
-  `r four[c(1,2,2,3,3,3)]`
+- repeated indices: `four[c(1,2,2,3,3,3)]`?<br>
+  `r four[c(1,2,2,3,3,3)]`<br>
   The value of the index is used everytime an index is encountered. Repeated indices results in repeated value.
 
 ## Using `seq()` and `rep()`:
