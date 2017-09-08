@@ -1,13 +1,12 @@
----
-title: "Lab 1: Basics of R"
-subtitle: "Stat 133, Fall 2017"
-author: "Sudarshan Srirangapatanam"
-date: "September 1, 2017"
-output: html_document
----
-## Expenses
+Lab 1: Basics of R
+================
+Sudarshan Srirangapatanam
+September 1, 2017
 
-```{r expenses}
+Expenses
+--------
+
+``` r
 phone <- 80
 transportation <- 20
 groceries <- 527
@@ -23,36 +22,41 @@ expenses <- c("Phone" = phone, "Transportation" = transportation, "Groceries" = 
 sorted_exp <- sort(expenses, decreasing = TRUE) # Sorting expenses
 ```
 
-Total Expenses = `r total`\
-Semester Expenses = `r semester`\
-Year Expenses = `r year`
+Total Expenses = 2220<br> Semester Expenses = 1.1110^{4}<br> Year Expenses = 2.2210^{4}
 
-Expenses Vector:\
-`r expenses`
+Expenses Vector:<br> 80, 20, 527, 10, 1500, 83
 
 **Barplot and plot sorted plus text:**
 
-```{r barplot}
+``` r
 barplot(expenses, names.arg = "")
+```
 
+![](Lab01_files/figure-markdown_github-ascii_identifiers/barplot-1.png)
+
+``` r
 bar_plot <- barplot(sorted_exp, ylim = c(0, 2000))
 plot_text <- bar_plot + text(bar_plot, sorted_exp, labels = sorted_exp, pos = 3)
 ```
 
-## Pythagoras formula
+![](Lab01_files/figure-markdown_github-ascii_identifiers/barplot-2.png)
 
-```{r pythagoras}
+Pythagoras formula
+------------------
+
+``` r
 a <- 3
 b <- 4
 c <- sqrt(a^2 + b^2)
 ```
 
-$$c = \sqrt{a^2 + b^2}$$
-a = `r a`, b = `r b`, c = `r c`
+$$c = \\sqrt{a^2 + b^2}$$
+ a = 3, b = 4, c = 5
 
-## Binomial Formula
+Binomial Formula
+----------------
 
-```{r binom, echo}
+``` r
 n <- 5 # number of trials
 k <- 2 # number of successes
 p <- .5 # prob. of a success
@@ -91,39 +95,29 @@ y <- (-3:3)
 eqn_series <- 3*y^2 + 4*y + 8
 ```
 
-$$Pr(k;n,p) = Pr(X = k) = {n \choose k}p^k (1-p)^{n-k}$$
-**2 heads out of 5 coin tosses:**
+$$Pr(k;n,p) = Pr(X = k) = {n \\choose k}p^k (1-p)^{n-k}$$
+ **2 heads out of 5 coin tosses:**
 
-* Using factorial() method:\
-  $Pr(2, 5, .5)$ = `r coin_fact`
-* Using choose() method:\
-  $Pr(2, 5, .5)$ = `r coin_choose`
-* Using dbinom() method:\
-  $Pr(2, 5, .5)$ = `r coin_binom`
+-   Using factorial() method:<br> *P**r*(2, 5, .5) = 0.3125
+-   Using choose() method:<br> *P**r*(2, 5, .5) = 0.3125
+-   Using dbinom() method:<br> *P**r*(2, 5, .5) = 0.3125
 
 **3 sixes out of 10 dice throws:**
 
-* Using choose() method:\
-  $Pr(3, 10, \frac{1}{6})$ = `r dice_choose`
-* Using dbinom() method:\
-  $Pr(3, 10, \frac{1}{6})$ = `r dice_binom`
-  
+-   Using choose() method:<br> $Pr(3, 10, \\frac{1}{6})$ = 0.1550454
+-   Using dbinom() method:<br> $Pr(3, 10, \\frac{1}{6})$ = 0.1550454
+
 **3 sixes out of 3 dice throws:**
 
-* using dbinom() method:\
-  $Pr(3, 3, \frac{1}{6})$ = `r dice_binom_three`
+-   using dbinom() method:<br> $Pr(3, 3, \\frac{1}{6})$ = 0.0046296
 
 **Coin tosses of a baised coin Pr(heads) = .35:**
 
-* $Pr(2,5,.35)$ = `r coin_baised`
-* Using dbinom() method:\
-  $Pr(X > 3) = Pr(4, 5, .35) + Pr(5, 5, .35)$ = `r coin_sum`
-* Using pbinom() method:\
-  $Pr(X > 3) = 1 - Pr(X \leq 3)$ = `r coin_sum_cdf`
-  
-**Calculating $3x^2 + 4x + 8$:**
+-   *P**r*(2, 5, .35) = 0.3364156
+-   Using dbinom() method:<br> *P**r*(*X* &gt; 3)=*P**r*(4, 5, .35)+*P**r*(5, 5, .35) = 0.0540225
+-   Using pbinom() method:<br> *P**r*(*X* &gt; 3)=1 − *P**r*(*X* ≤ 3) = 0.0540225
 
-* When x = 2,\
-  $3x^2 + 4x + 8$ = `r eqn_two`
-* When x is a series from -3 to 3,\
-  $3x^2 + 4x + 8$ = [`r eqn_series`]
+**Calculating 3*x*<sup>2</sup> + 4*x* + 8:**
+
+-   When x = 2,<br> 3*x*<sup>2</sup> + 4*x* + 8 = 28
+-   When x is a series from -3 to 3,<br> 3*x*<sup>2</sup> + 4*x* + 8 = \[23, 12, 7, 8, 15, 28, 47\]
