@@ -1,0 +1,52 @@
+---
+title: 'Post 1: Basics of Hypothesis Tests and Z-test'
+author: "Sudarshan Srirangapatanam"
+date: "September 11, 2017"
+output: html_document
+runtime: shiny
+---
+
+## Hypothesis Tests
+
+**What are hypothesis tests?**
+
+Hypothesis tests are a way to objectify differences within data. They help us measure defferences and tell us whether they are significant in an objective way.
+
+Say you have two sample x and y. Sample x has a mean of 5 and sample y has a mean of 7. How can you objectively tell whether these two samples are actually different? This is where we do a hypothesis test and decide whether they are actrually different or if this was simply a difference due to random error.
+
+**What do we need to do a hypothesis test?**
+*\*Ingredients*
+
+At the very least we need the following information to sucessfully run a test and be able to draw a reliable interpretation:
+
+1. Information regarding sample:
+  * Sample, or
+  * Summary of sample, or
+  * necessary Statistics regarding sample
+
+2. Hypothesis:
+  * A hypothesis that we belive is true based on knowledge regarding data, or
+  * A hypothesis that we would want to reject
+
+3. A test:
+  * Test that would allow us accurately interpret results based on limitations of the sample
+
+4. Acceptable error:
+  * maximum allowed error, or
+  * interpret based on p-value
+  
+## Testing scheme
+
+**Step 1:** Construct hypothesis
+
+**Step 2:** Decided on the test that is appropriate for the sample
+
+**Step 3:** Gather necessary statistics from the sample
+
+**Step 4:** Decide on acceptable error
+
+**Step 5:** Execute the test
+
+
+```{r setup}
+```
