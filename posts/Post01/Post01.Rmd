@@ -6,7 +6,7 @@ output: html_document
 runtime: shiny
 ---
 
-## Hypothesis Tests
+# Hypothesis Tests
 
 **What are hypothesis tests?**
 
@@ -39,14 +39,91 @@ At the very least we need the following information to sucessfully run a test an
 
 **Step 1:** Construct hypothesis
 
+We must have two hypothesis and in the testing terminology they are null and alternate. What we are testing technically is a fucntion of our data and is called test-statistic.
+
+  * Null Hypothesis: This is the hypothesis we assume is true unless proven otherwise.
+  * Alternative hypothesis: This is precisely the alternate of our null. In the testing space this could mean different things based on how we define it.<br>
+  If we do not have an alternate we can set this to be anything other than null.<br>
+  We can also test our null to a specific set of conditions, the condition we are testing against is the alternative.<br>
+  We must define our alternative so that there is some reason to believe it is true given the evidence doesn't support our null.
+  
+Think of the statement "Innocent until proven guilty." Here we claim that the person is innocent and assume that it is true, therefore innocence would be our null hypothesis. If we had enough proof that a person is NOT innocent, then we say that he/she is guilty, therefore guilt would be our alternative hypothesis.
+
 **Step 2:** Decided on the test that is appropriate for the sample
+
+We have many tests that we can perform but not all of them can be applied to specific data we have. The tests we will be talking about in this post and in the coming posts will be:
+
+  * Z-test
+  * T-test
+  * Chi-squared test or paired T-test
+
+Each test has its own set of assumptions and how well it is compatible for our sample depends on whether the assumptions are applicable to our sample and if they are by how much.<br>
+We can't do one test for any kind of data/sample. This is analogoues to comparing apples to apples vs. comparing apples to oranges.<br>
+But we can do mulitple tests for the same data/sample depending on the added benefits of each test.
 
 **Step 3:** Gather necessary statistics from the sample
 
+Based on the test we decide we have to gather imoprtant/necessary statistic from our data/sample to be able to continue with the test. For now think of tests as blackboxes, they provide an output but to do so they also need an input. This input depends on the box we are using. I say for now because in this series of posts we will be looking into how they actually work.
+
 **Step 4:** Decide on acceptable error
+
+This decision is the most crucial and is highly variable. Notice in this step we decide and the decision might not be as clear cut as other decisions.
+
+For this step we will have to use our judgement and decide on how much of error are we willing to sacrifice. Consider the following scenarios to see how one would decide on error:
+
+  + **_Case 1:_** "Innocent until proven guilty"<br>
+  Ideally we woudl want no error here since we do not want any innocent person to be punished, but with an error of 0 our tests do not work so we must allow for some margin of error.
+  
+  + **_Case 2:_** Identifying blood type<br>
+  Here we see that all we are doing is identifying blood type (A, B, AB, or O). Ideally again we want the error to be as low as possible. Say we would like the error to be .01%, that is we want our report to be 99.99% correct. This is doable but to do this would be expensive, to have such a high hit-rate would mean that the company should spend a ton of money on maintaining the machine and so forth. Also we can afford a higher error since report is not life threatning (unless it is done for an emergency blood transfusion). So we say we can afford an error of 5%.
+  
+  + **_Case 2:_** Testing for HIV using a blood sample<br>
+  Now we see that the situation is more serious. We wouldn't want our report to tell that a man with HIV doesn't have HIV, because this would mean that he will go untreated. Here we do infact need 1% or .01% error.
 
 **Step 5:** Execute the test
 
+This is the easiest step of all. Here we just take our understanding of the test from *Step 2* and run a test using our statistics we caculate from *Step 3*. Then, we interpret out results based our acceptable error from *Step 4* and decide which of our hypothesis from *Step 1* is correct.
 
-```{r setup}
+# Z-test
+
+We will start with z-test since it is the simplest of all.
+
+### Assumptions
+```{r z-test-setup}
+
+claim <- .95 # null claim
+sderror <- .07 # standard deviation provided (or calculated and adjusted)
+
+n <- 100 # sample size
+x <- .85 # our study results
+
+alpha <- .01 # significance leve (or acceptable error)
+
+p-value <- pnorm(x, mean = claim, sd = sderror)
+
 ```
+
++ The sample is aproximately normal in distribution or that test-statistic is approximately normal.
++ We know the population standard deviation or have a way to estimate it.
+
+Say that a pharmacuetical company comes up with a new drug and claims that it can cure `r claim*100`% of breast cancer cases. You run a small study and find doctors who are already using this treatment options. You find that of the `r n` people who recieve this treatment, only `r x*100` people report a success after the treatment, and you begin to suspect the companies claim. Using your data you decide to conduct a z-test and verify the company's claim.
+
+You main goal is to verify if the company is right and you wouldn't claim that they are wrong unless your data prooves otherwise. SO you set up the following hypothesis:
+
++ Null Hypothesis: On average, the drug from this company can cure `r claim*100`% of the cases. That is, $H_0: p=$`r claim`.
++ Alternative Hypothesis: Since your study showed a lower success rate you would want to conclude that it the acutal success rate is infact less than what is claimed. That is, $H_A: p<$`r claim`.
+
+Z-test relies on normal distribution and measures any deviatation as significant from the normal distribution. To draw any conclusions from normal distribution we need mean and variance, therefore we will need these. To make this easier say the company also provides standard deviation (`r sderror`), which is sqared-root of variance.
+
+Now we will have to decide on acceptable error, since this too much error in this case would lead to undesirable consequences lets say we will allow for only `r alpha*100`% error.<br>
+*What does the error formally mean?*<br>
+The error is simple the probability that we reject our null given that it is infact true. $Pr(reject\ H_0\ |\ H_0\ is\ true)$
+
+There are multiple ways to carry out a test. One could use the significance level to find critical values and then compare these to the actual value to arrive at a conclusion. One could also carry out a test using only the actual value and find the p-value, and compare p-value with acceptable error to arrive at a conlcusion.<br>
+We will be using the the later method since it is more straightforward to understand and since it allows us to conduct a test without any defined error untill the very last step. This could be very useful when one cann't decide on the accetabel error.
+
+Our first task to find the probability of observing the results from our study given that the company's claim is still true. Remember that we do not reject our null hypothesis unless proven otherwise.<br>
+For this we use normal distibution with mean `r claim` and variance `r (sderror)^2`.
+
+$Pr(x \leq$ `r x` $|\ \mu =$ `r claim`, $\sigma =$ `r sderror`$)$ = `r p-value`
+

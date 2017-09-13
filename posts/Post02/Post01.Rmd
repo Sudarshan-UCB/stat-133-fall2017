@@ -1,0 +1,25 @@
+---
+title: 'Post 2: Basics of T-test'
+author: "Sudarshan Srirangapatanam"
+date: "September 11, 2017"
+output: html_document
+runtime: shiny
+---
+
+This post draws on concepts from post 1. If you have not yet taken a look at that post you can view it [here]().
+
+# T-test
+
+### Assumptions
+
++ Some assumptions go here
+
+Say we run an experiment at Berkeley and we get some data (x1, x2, x3, ..., xn). Another experimenter from Stanford runs the same experiment and gets some other data (y1, y2, y3, ..., yn). They run the same experiment with the same scientific question that addresses some physical phenomenon - say gravitational constant. We know for sure there exists a constant so their experiments are drawing from a huge population (G1, G2, G3, ..., GN).
+
+We would like to answer if the two experiments arrive at similar conslusions or if they are actually (objectively) very different. This is an important question to verify any experiment because if they are genuinely different then our understanding of the phenomenon is lacking somehting or there couls be somehiting wrong with our experimental setup.
+
+Our questions gives us our null and alternative hypothesis.
+
+```{r setup}
+
+```
