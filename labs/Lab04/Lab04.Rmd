@@ -9,8 +9,8 @@ output: github_document
 ## Data
 
 ```{r setup}
-require(dplyr) #used for data wrangling
-require(knitr) #used for kable() function
+require("dplyr") #used for data wrangling
+require("knitr") #used for kable() function
 
 dat <- read.csv('data/nba2017-players.csv', stringsAsFactors = FALSE)
 ```
