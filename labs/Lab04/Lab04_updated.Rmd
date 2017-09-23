@@ -1,0 +1,239 @@
+---
+title: 'Lab 4: Data Frame Basics'
+subtitle: "Stat 133, Fall 2017"
+author: "Sudarshan Srirangapatanam"
+output: github_document
+---
+
+## Creating data frames
+```{R create}
+require("knitr")
+
+player_name <- c("Thompson", "Curry", "Green", "Durant", "Pachulia")
+pos <- c("SG", "PG", "PF", "SF", "C")
+sal <- c(16663575, 12112359, 15330435, 26540100, 2898000)
+point <- c(1742, 1999, 776, 1555, 426)
+PPG <- c(22.3, 25.3, 10.2, 25.1, 6.1)
+rookie <- c(FALSE, FALSE, FALSE, FALSE, FALSE)
+
+lineup_GSW <- data.frame(
+  Player = player_name,
+  Position = pos,
+  Salary = sal,
+  Points = point,
+  PPG = PPG,
+  Rookie = rookie
+)
+
+gsw_list <- list(
+  Player = player_name,
+  Position = pos,
+  Salary = sal,
+  Points = point,
+  PPG = PPG,
+  Rookie = rookie
+)
+
+lineup_GSW_list <- data.frame(gsw_list)
+
+lineup_cbind <- cbind(
+    Player = player_name,
+  Position = pos,
+  Salary = sal,
+  Points = point,
+  PPG = PPG,
+  Rookie = rookie
+)
+```
+
++ Use the vectors to create a first data frame with `data.frame()`.<br>
+`r kable(lineup_GSW)`
+
++ Create another data frame by first starting with a `list()`, and then passing the list to `data.frame()`.<br>
+`r kable(lineup_GSW_list)`
+
++ What would you do to obtain a data frame such that when you check its structure `str()` the variables are:
+    + Player as character: enclose our vector when we pass them with `as.character`.
+    + Position as factor: enclose our vector when we pass them with `as.factor`.
+    + Salary as numeric or real (ignore the commas): enclose our vector when we pass them with `as.numeric`, or `as.real`.
+    + Points as integer: enclose our vector when we pass them with `as.integer`.
+    + PPG as numeric or real: enclose our vector when we pass them with `as.numeric`, or `as.real`.
+    + Rookie as logical: enclose our vector when we pass them with `as.logical`.
+
++ Find out how to use the column binding function `cbind()` to create a tabular object with the vectors created in step 1.<br>
+`r kable(lineup_cbind)`
+    + inspect what class of object is obtained with `cbind()`: `r class(lineup_cbind)`
+    
++ How could you convert the object in the previous step into a data frame?<br>
+We could coerce it using `as.data.frame()` function.
+
+## Data
+```{r data_read}
+dat <- read.csv('data/nba2017-players.csv', stringsAsFactors = FALSE)
+
+durant <- dat[dat$player == "Kevin Durant",]
+
+ucla <- dat[dat$college == "University of California, Los Angeles",]
+
+rookies <- dat[dat$experience == 0,]
+rookie_centers <- rookies[rookies$position == "C",]
+
+top_players <- dat[dat$games > 50 & dat$minutes > 100,]
+
+gsw <- dat[dat$team == "GSW", c("player", "height", "weight")]
+```
+
+**The data used in this lab is taken from [nba2017-players](https://github.com/Sudarshan-UCB/stat-133-fall2017/blob/master/labs/Lab04/data/nba2017-players.csv)**
+
++ `dim()`:<br>
+`r dim(dat)`
+  
++ `head()`:<br>
+`r kable(head(dat), row.names = FALSE)`
+  
++ `tail()`:<br>
+`r kable(tail(dat), row.names = FALSE)`
+  
++ `summary()`:<br>
+`r kable(summary(dat), row.names = FALSE)`
+
+Use bracket notation, the dollar operator, as well as concepts of logical subsetting and indexing to:
+
++ Display the last 5 rows of the data.<br>
+`r kable(dat[(length(dat)-5+1):length(dat),], row.names = FALSE)`
+
++ Display those rows associated to players having height less than 70 inches tall.<br>
+`r kable(dat[dat$height < 70,], row.names = FALSE)`
+
++ Of those players that are centers (position C), display their names and salaries.\*<br>
+`r kable(head(dat[dat$position == "C",c("player", "salary")]), row.names = FALSE)`
+
++ Create a data frame durant with Kevin Durant's information (i.e. row).<br>
+`r kable(durant, row.names = FALSE)`
+
++ Create a data frame ucla with the data of players from college UCLA ("University of California, Los Angeles").\*<br>
+`r kable(head(ucla), row.names = FALSE)`
+
++ Create a data frame rookies with those players with 0 years of experience.\*<br>
+`r kable(head(rookies), row.names = FALSE)`
+
++ Create a data frame rookie_centers with the data of Center rookie players.\*<br>
+`r kable(head(rookie_centers), row.names = FALSE)`
+
++ Create a data frame top_players for players with more than 50 games and more than 100 minutes played.\*<br>
+`r kable(head(top_players), row.names = FALSE)`
+
++ What's the largest height value?<br>
+`r max(dat$height)`
+
++ What's the minimum height value?<br>
+`r min(dat$height)`
+
++ What's the overall average height?<br>
+`r mean(dat$height)`
+
++ Who is the tallest player?<br>
+`r dat[dat$height == max(dat$height), "player"]`
+
++ Who is the shortest player?<br>
+`r dat[dat$height == min(dat$height), "player"]`
+
++ Which are the unique teams?<br>
+`r unique(dat$team)`
+
++ How many different teams?<br>
+`r length(unique(dat$team))`
+
++ Who is the oldest player?<br>
+`r dat[dat$age == max(dat$age), "player"]`
+
++ What is the median salary of all players?<br>
+`r median(dat$salary)`
+
++ What is the median salary of the players with 10 years of experience or more?<br>
+`r median(dat[dat$experience >= 10,"salary"])`
+
++ What is the median salary of Shooting Guards (SG) and Point Guards (PG)?<br>
+`r median(dat[dat$position == "SG" | dat$position == "PG","salary"])`
+
++ What is the median salary of Power Forwards (PF), 29 years or older, and 74 inches tall or less?<br>
+`r median(dat[dat$position == "PF" & dat$age >= 29 & dat$height <= 74,"salary"])`
+
++ How many players scored 4 points or less?<br>
+`r length(dat[dat$points <= 4,"player"])`
+
++ Who are those players who scored 4 points or less?<br>
+`r dat[dat$points <= 4,"player"]`
+
++ Who is the player with 0 points?<br>
+`r dat[dat$points == 0,"player"]`
+
++ How many players are from "University of California, Berkeley"?<br>
+`r length(dat[dat$college == "University of California, Berkeley","player"])`
+
++ Are there any players from "University of Notre Dame"? If so how many and who are they?<br>
+There are `r length(dat[dat$college == "University of Notre Dame","player"])` players from University of Notre Dame. They are `r dat[dat$college == "University of Notre Dame","player"]`.
+
++ Are there any players with weight greater than 260 pounds? If so how many and who are they?<br>
+There are `r length(dat[dat$weight > 260,"player"])` players with weight greater than 260 pounds.
+
++ How many players did not attend a college in the US?<br>
+`r length(dat[dat$college == "","player"])`
+
++ Who is the player with the maximum rate of points per minute?<br>
+`r transform(dat, PPM = points/minutes)[transform(dat, PPM = points/minutes)$PPM == max(transform(dat, PPM = points/minutes)$PPM), "player"]`
+
++ Who is the player with the maximum rate of three-points per minute?<br>
+`r transform(dat, PPM = points3/minutes)[transform(dat, PPM = points3/minutes)$PPM == max(transform(dat, PPM = points3/minutes)$PPM), "player"]`
+
++ Who is the player with the maximum rate of two-points per minute?<br>
+`r transform(dat, PPM = points2/minutes)[transform(dat, PPM = points2/minutes)$PPM == max(transform(dat, PPM = points2/minutes)$PPM), "player"]`
+
++ Who is the player with the maximum rate of one-points (free-throws) per minute?<br>
+`r transform(dat, PPM = points1/minutes)[transform(dat, PPM = points1/minutes)$PPM == max(transform(dat, PPM = points1/minutes)$PPM), "player"]`
+
++ Create a data frame gsw with the name, height, weight of Golden State Warriors (GSW)\*<br>
+`r kable(head(gsw), row.names = FALSE)`
+
++ Display the data in gsw sorted by height in increasing order (hint: see ?sort and ?order)\*<br>
+`r kable(head(gsw[order(gsw$height),]), row.names = FALSE)`
+
++ Display the data in gsw by weight in decreasing order (hint: see ?sort and ?order)\*<br>
+`r kable(head(gsw[order(-gsw$weight),]), row.names = FALSE)`
+
++ Display the player name, team, and salary, of the top 5 highest-paid players (hint: see ?sort and ?order)<br>
+`r kable(dat[order(-dat$salary),c("player", "team", "salary")][1:5,], row.names = FALSE)`
+
++ Display the player name, team, and points3, of the top 10 three-point players (hint: see ?sort and ?order)<br>
+`r kable(dat[order(-dat$points3),c("player", "team", "points3")][1:10,], row.names = FALSE)`
+
+*\* only a small suset is shown using the `head()` function to reduce report length*
+
+## Group by
+```{r group_by}
+pos_group <- aggregate(. ~ position, data = dat[ ,c('position', 'height', 'weight', 'age')], FUN = mean)
+
+team_group <- aggregate(. ~ team, data = dat[ ,c('team', 'height', 'weight', 'age')], FUN = mean)
+
+team_pos_group <- aggregate(. ~ team + position, data = dat[ ,c('team', 'position', 'height', 'weight', 'age')], FUN = mean)
+
+fun_group <- aggregate(. ~ team + position, data = dat[ ,c('team', 'position', 'salary')], FUN = function(x) c(minimum = min(x), median = median(x), mean = mean(x), maximum = max(x)))
+```
+
++ Create a data frame with the average height, average weight, and average age, grouped by position\*<br>
+`r kable(head(pos_group), row.names = FALSE)`
+
++ Create a data frame with the average height, average weight, and average age, grouped by team\*<br>
+`r kable(head(team_group), row.names = FALSE)`
+
++ Create a data frame with the average height, average weight, and average age, grouped by team and position.\*<br>
+`r kable(head(team_pos_group), row.names = FALSE)`
+
++ Difficult: Create a data frame with the minimum salary, median salary, mean salary, and maximum salary, grouped by team and position.\*<br>
+```{r}
+head(fun_group)
+```
+
+*\* only a small suset is shown using the `head()` function to reduce report length*
+
+

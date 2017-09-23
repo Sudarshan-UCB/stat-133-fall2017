@@ -1,21 +1,5 @@
-## Posts
+For posts and files related to posts please see [stat133-hws-fall17](https://github.com/shrinisudi/stat133-hws-fall17) repo.
 
-For the posts section of the class I will be writing about hypothesis tests.
+All posts are under `posts` section (https://github.com/shrinisudi/stat133-hws-fall17/tree/master/posts).
 
-**Pre-reqs**
-These the concepts that I will not be dicussing and assume that the readers are already comfortable with:
-
-+ Basic stats (mean, sd, expected number)
-+ Distributions (normal distribution, t-distribution, chi-squared distribution)
-+ Continious probabilities
-+ Distinctions between samples and populations
-+ Sampling and randomization
-+ Estimating parameters
-
-My goal is to breifly introduce why we do hypothesis tests and to talk about the following:
-
-* Z-tests
-* T-tests
-* Chi-squared tests or paired T-tests
-
-I will also include a calculator function at the end of each post where a test will be performed using minimal amount of information required.
+The repo may be private to protect from plagiarism until Dec-18th 2017. If we are past this date and the repo is still private, please ask for permission and I will grant them.
