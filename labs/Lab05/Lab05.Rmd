@@ -1,0 +1,173 @@
+---
+title: 'Lab 4: Basics of dplyr'
+subtitle: "Stat 133, Fall 2017"
+author: "Sudarshan Srirangapatanam"
+date: "September 13, 2017"
+output: github_document
+---
+
+## Data
+
+```{r setup}
+require("dplyr") #used for data wrangling
+require("knitr") #used for kable() function
+
+dat <- read.csv('data/nba2017-players.csv', stringsAsFactors = FALSE)
+```
+
+**The data used in this lab is taken from [nba2017-players](https://github.com/Sudarshan-UCB/stat-133-fall2017/blob/master/labs/Lab04/data/nba2017-players.csv)**
+
+It is a good practice to use `stringsAsFactors = FALSE` because it specifically tells R to not convert characters as factors which is precisely what we need, since not all character vectors are factors. In case we do have some variables that needed to be read as factors we can easily convert them using `as.factor` later.
+
++ `dim()`:<br>
+`r dim(dat)`
+  
++ `head()`:<br>
+`r kable(head(dat), row.names = FALSE)`
+  
++ `tail()`:<br>
+`r kable(tail(dat), row.names = FALSE)`
+  
++ `summary()`:<br>
+`r kable(summary(dat), row.names = FALSE)`
+
+## Using `dplyr`
+
+```{r using_dplyr}
+last_5 <- slice(dat, (length(dat)-5+1):length(dat))
+
+height_l70 <- filter(dat, height < 70)
+
+names_sal_of_centers <- dat %>% filter(position == "C") %>% select(player, salary)
+
+lal_players <- dat %>% filter(team == "LAL") %>% select(player)
+
+#Both fucntions checks if there are any players and returns answer
+players_college <- function(data, college_name){
+  college_data <- filter(data, college == college_name)
+  length_data <- length((college_data %>% select(college))[[1]])
+  if(length_data == 0){
+    return(paste("There are no players from", college_name))
+  }
+  return(paste("There are ", length_data, "players from ", college_name))
+}
+
+players_weight <- function(data, weight_cat){
+  weight_data <-  filter(data, eval(parse(text = weight_cat)))
+  length_data <- length((weight_data %>% select(weight))[[1]])
+  if(length_data == 0){
+    return(paste("There are no players in the catergory", weight_cat))
+  }
+  return(paste("There are ", length_data, "players in the catergory ", weight_cat))
+}
+
+#All other answers use inline code chunks and cane be viewed in .Rmd file
+```
+
++ subset the data by selecting the last 5 rows.<br>
+`r kable(last_5, row.names = FALSE)`
+
++ select those players with height less than 70 inches tall.<br>
+`r kable(height_l70, row.names = FALSE)`
+
++ of those players that are centers (position `C`), select their names and salaries.\*<br>
+`r kable(head(names_sal_of_centers), row.names = FALSE)`
+
++ display the player names of the lakers (`'LAL'`).<br>
+`r lal_players[[1]]`
+
++ What's the largest height value?<br>
+`r summarize(dat, max(height))`
+
++ What's the minimum height value?<br>
+`r summarize(dat, min(height))` 
+
++ What's the overall average height?<br>
+`r summarize(dat, mean(height))`
+
++ Who is the tallest player?<br>
+`r (filter(dat, height == max(height)) %>% select(player))[[1]]`
+
++ Who is the shortest player?<br>
+`r (filter(dat, height == min(height)) %>% select(player))[[1]]`
+
++ Which are the unique teams?<br>
+`r distinct(dat, team)[[1]]`
+
++ How many different teams?<br>
+`r length( distinct(dat, team)[[1]])`
+
++ Who is the oldest player?<br>
+`r (filter(dat, age == max(age)) %>% select(player))[[1]]`
+
++ What is the median salary?<br>
+`r summarize(dat, median(salary))`
+
++ Are there any players from "University of California, Berkeley"? If so how many and who are they?<br>
+`r players_college(dat, college_name = "University of California, Berkeley")`
+
++ Are there any players from "University of California, Los Angeles"? If so how many and who are they?<br>
+`r players_college(dat, college_name = "University of California, Los Angeles")`
+
++ Are there any players with weight greater than 260 pounds? If so how many and who are they?<br>
+`r players_weight(dat, "weight > 260")`
+
+*\* only a small suset is shown using the `head()` function to reduce report length*
+
+## Sorting
+
++ Obtain height values in increasing order\*<br>
+`r head((dat %>% select(height) %>% arrange(height))[[1]])`...
+
++ Obtain weight values in decreasing order\*<br>
+`r head((dat %>% select(height) %>% arrange(desc(height)))[[1]])`...
+
++ Sort data by height in increasing order\*<br>
+`r kable(head(arrange(dat, height)), row.names = FALSE)`
+
++ Sort data by weight in decreasing order\*<br>
+`r kable(head(arrange(dat, desc(weight))), row.names = FALSE)`
+
+*\* only a small suset is shown using the `head()` function to reduce report length*
+
+## Subsetting Operations
+
+```{r subsetting}
+durant <- filter(dat, player == "Kevin Durant")
+ucla <- filter(dat, college == "University of California, Los Angeles")
+rookies <- filter(dat, experience == 0)
+rookie_centers <- filter(dat, experience == 0 & position == "C")
+players_50_100 <- filter(dat, games > 50 & minutes > 100)
+```
+
++ create a data frame `durant` with Kevin Durant's information (i.e. row)<br>
+`r kable(durant, row.names = FALSE)`
+
++ create a data frame `ucla` with the data of players from college UCLA\*<br>
+`r kable(head(ucla), row.names = FALSE)`
+
++ create a data frame `rookies` with those players with 0 years of experience\*<br>
+`r kable(head(rookies), row.names = FALSE)`
+
++ create a data frame `rookie_centers` with the data of Center rookie players\*<br>
+`r kable(head(rookie_centers), row.names = FALSE)`
+
++ create a data frame for players with more than 50 games and more than 100 minutes\*<br>
+`r kable(head(players_50_100), row.names = FALSE)`
+
+*\* only a small suset is shown using the `head()` function to reduce report length*
+
+## More Wrangling
+
+Answers for question below uses inline code chunks which can be viewed in .Rmd file
+
++ get the data of those above the average weight?\*<br>
+`r kable(head(filter(dat, weight > mean(weight))))`
+
++ add a column 'weight_kgm' for weight to kilograms\*<br>
+`r kable(head(mutate(dat, weight_kgm = weight * 0.453592)))`
+
+get the log of height for players with age less than or equal to 25 years\*<br>
+`r head((dat %>% filter(age <= 25) %>% mutate(height_log = log(height)) %>% select(height_log))[[1]])`...
+
+*\* only a small suset is shown using the `head()` function to reduce report length*
