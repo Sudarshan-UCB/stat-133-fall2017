@@ -1,5 +1,5 @@
 ---
-title: 'Lab 4: Basics of dplyr'
+title: 'Lab 5: First contact with dplyr and ggplot2'
 subtitle: "Stat 133, Fall 2017"
 author: "Sudarshan Srirangapatanam"
 date: "September 13, 2017"
@@ -9,165 +9,151 @@ output: github_document
 ## Data
 
 ```{r setup}
-require("dplyr") #used for data wrangling
 require("knitr") #used for kable() function
+require("dplyr") #used for data wrangling
+require("ggplot2") #used fro plots
 
 dat <- read.csv('data/nba2017-players.csv', stringsAsFactors = FALSE)
-```
-
-**The data used in this lab is taken from [nba2017-players](https://github.com/Sudarshan-UCB/stat-133-fall2017/blob/master/labs/Lab04/data/nba2017-players.csv)**
-
-It is a good practice to use `stringsAsFactors = FALSE` because it specifically tells R to not convert characters as factors which is precisely what we need, since not all character vectors are factors. In case we do have some variables that needed to be read as factors we can easily convert them using `as.factor` later.
-
-+ `dim()`:<br>
-`r dim(dat)`
-  
-+ `head()`:<br>
-`r kable(head(dat), row.names = FALSE)`
-  
-+ `tail()`:<br>
-`r kable(tail(dat), row.names = FALSE)`
-  
-+ `summary()`:<br>
-`r kable(summary(dat), row.names = FALSE)`
-
-## Using `dplyr`
-
-```{r using_dplyr}
-last_5 <- slice(dat, (length(dat)-5+1):length(dat))
-
-height_l70 <- filter(dat, height < 70)
-
-names_sal_of_centers <- dat %>% filter(position == "C") %>% select(player, salary)
 
 lal_players <- dat %>% filter(team == "LAL") %>% select(player)
-
-#Both fucntions checks if there are any players and returns answer
-players_college <- function(data, college_name){
-  college_data <- filter(data, college == college_name)
-  length_data <- length((college_data %>% select(college))[[1]])
-  if(length_data == 0){
-    return(paste("There are no players from", college_name))
-  }
-  return(paste("There are ", length_data, "players from ", college_name))
-}
-
-players_weight <- function(data, weight_cat){
-  weight_data <-  filter(data, eval(parse(text = weight_cat)))
-  length_data <- length((weight_data %>% select(weight))[[1]])
-  if(length_data == 0){
-    return(paste("There are no players in the catergory", weight_cat))
-  }
-  return(paste("There are ", length_data, "players in the catergory ", weight_cat))
-}
-
-#All other answers use inline code chunks and cane be viewed in .Rmd file
 ```
 
-+ subset the data by selecting the last 5 rows.<br>
-`r kable(last_5, row.names = FALSE)`
+**The data used in this lab is taken from [nba2017-players](https://github.com/Sudarshan-UCB/stat-133-fall2017/blob/master/labs/Lab05/data/nba2017-players.csv)**
 
-+ select those players with height less than 70 inches tall.<br>
-`r kable(height_l70, row.names = FALSE)`
 
-+ of those players that are centers (position `C`), select their names and salaries.\*<br>
-`r kable(head(names_sal_of_centers), row.names = FALSE)`
+### Basic "dplyr" verbs
 
-+ display the player names of the lakers (`'LAL'`).<br>
-`r lal_players[[1]]`
+-   use `slice()` to subset the data by selecting the first 5 rows.<br>
+`r kable(slice(dat, 1:5), row.names = FALSE)`
 
-+ What's the largest height value?<br>
-`r summarize(dat, max(height))`
+-   use `slice()` to subset the data by selecting rows 10, 15, 20, ..., 50.<br>
+`r kable(slice(dat, seq(10, 50, 10)), row.names = FALSE)`
 
-+ What's the minimum height value?<br>
-`r summarize(dat, min(height))` 
+-   use `slice()` to subset the data by selecting the last 5 rows.<br>
+`r kable(slice(dat, (length(dat)-5+1):length(dat)), row.names = FALSE)`
 
-+ What's the overall average height?<br>
-`r summarize(dat, mean(height))`
+-   use `filter()` to subset those players with height less than 70 inches tall.<br>
+`r kable(filter(dat, height < 70), row.names = FALSE)`
 
-+ Who is the tallest player?<br>
-`r (filter(dat, height == max(height)) %>% select(player))[[1]]`
+-   use `filter()` to subset rows of Golden State Warriors ('GSW').\*<br>
+`r kable(head(filter(dat, team == "GSW")), row.names = FALSE)`
 
-+ Who is the shortest player?<br>
-`r (filter(dat, height == min(height)) %>% select(player))[[1]]`
+-   use `filter()` to subset rows of GSW centers ('C').\*<br>
+`r kable(head(filter(dat, position == "C")), row.names = FALSE)`
 
-+ Which are the unique teams?<br>
-`r distinct(dat, team)[[1]]`
+-   use `filter()` and then `select()`, to subset rows of lakers ('LAL'), and then display their names.\*<br>
+`r head(dat %>% filter(team == "LAL") %>% select(player))[[1]]`
 
-+ How many different teams?<br>
-`r length( distinct(dat, team)[[1]])`
+-   use `filter()` and then `select()`, to display the name and salary, of GSW point guards.\*<br>
+`r kable(head(dat %>% filter(team == "GSW" & position == "PG") %>% select(player, salary)), row.names = FALSE)`
 
-+ Who is the oldest player?<br>
-`r (filter(dat, age == max(age)) %>% select(player))[[1]]`
+-   find how to select the name, age, and team, of players with more than 10 years of experience, making 10 million dollars or less.\*<br>
+`r kable(head(dat %>% filter(experience > 10 & salary <= 10^7) %>% select(player, age, team)), row.names = FALSE)`
 
-+ What is the median salary?<br>
-`r summarize(dat, median(salary))`
-
-+ Are there any players from "University of California, Berkeley"? If so how many and who are they?<br>
-`r players_college(dat, college_name = "University of California, Berkeley")`
-
-+ Are there any players from "University of California, Los Angeles"? If so how many and who are they?<br>
-`r players_college(dat, college_name = "University of California, Los Angeles")`
-
-+ Are there any players with weight greater than 260 pounds? If so how many and who are they?<br>
-`r players_weight(dat, "weight > 260")`
+-   find how to select the name, team, height, and weight, of rookie players, 20 years old, displaying only the first five occurrences (i.e. rows).<br>
+`r kable((dat %>% filter(experience == 0 & age == 20) %>% select(player, team, height, weight) %>% slice(1:5)), row.names = FALSE)`
 
 *\* only a small suset is shown using the `head()` function to reduce report length*
 
-## Sorting
+### Adding new variables: `mutate()`
+```{r mutate_order}
+gsw <- filter(dat, team == 'GSW')
+gsw <- select(gsw, player, height, weight)
+gsw <- slice(gsw, c(4, 8, 10, 14, 15))
+gsw
 
-+ Obtain height values in increasing order\*<br>
-`r head((dat %>% select(height) %>% arrange(height))[[1]])`...
+gsw3 <- mutate(gsw, log_height = log(height), log_weight = log(weight))
 
-+ Obtain weight values in decreasing order\*<br>
-`r head((dat %>% select(height) %>% arrange(desc(height)))[[1]])`...
-
-+ Sort data by height in increasing order\*<br>
-`r kable(head(arrange(dat, height)), row.names = FALSE)`
-
-+ Sort data by weight in decreasing order\*<br>
-`r kable(head(arrange(dat, desc(weight))), row.names = FALSE)`
-
-*\* only a small suset is shown using the `head()` function to reduce report length*
-
-## Subsetting Operations
-
-```{r subsetting}
-durant <- filter(dat, player == "Kevin Durant")
-ucla <- filter(dat, college == "University of California, Los Angeles")
-rookies <- filter(dat, experience == 0)
-rookie_centers <- filter(dat, experience == 0 & position == "C")
-players_50_100 <- filter(dat, games > 50 & minutes > 100)
+gsw_mpg <- dat %>% filter(team == "GSW") %>% mutate(min_per_game = minutes / games) %>% select(player, experience, min_per_game) %>% arrange(desc(min_per_game))
 ```
 
-+ create a data frame `durant` with Kevin Durant's information (i.e. row)<br>
-`r kable(durant, row.names = FALSE)`
+-   using the data frame `gsw`, add a new variable `product` with the product of `height` and `weight`.<br>
+`r kable(mutate(gsw, product = height * weight))`
 
-+ create a data frame `ucla` with the data of players from college UCLA\*<br>
-`r kable(head(ucla), row.names = FALSE)`
+-   create a new data frame `gsw3`, by adding columns `log_height` and `log_weight` with the log transformations of `height` and `weight`.<br>
+`r kable(gsw3)`
 
-+ create a data frame `rookies` with those players with 0 years of experience\*<br>
-`r kable(head(rookies), row.names = FALSE)`
+-   use the original data frame to `filter()` and `arrange()` those players with height less than 71 inches tall, in increasing order.<br>
+`r kable((dat %>% filter(height < 71) %>% arrange(height)), row.names = FALSE)`
 
-+ create a data frame `rookie_centers` with the data of Center rookie players\*<br>
-`r kable(head(rookie_centers), row.names = FALSE)`
+-   display the name, team, and salary, of the top-5 highest paid players<br>
+`r kable((dat %>% select(player, team, salary) %>% arrange(desc(salary)) %>% slice(1:5)), row.names = FALSE)`
 
-+ create a data frame for players with more than 50 games and more than 100 minutes\*<br>
-`r kable(head(players_50_100), row.names = FALSE)`
+-   display the name, team, and points3, of the top 10 three-point players<br>
+`r kable((dat %>% select(player, team, points3) %>% arrange(desc(points3)) %>% slice(1:10)), row.names = FALSE)`
 
-*\* only a small suset is shown using the `head()` function to reduce report length*
-
-## More Wrangling
-
-Answers for question below uses inline code chunks which can be viewed in .Rmd file
-
-+ get the data of those above the average weight?\*<br>
-`r kable(head(filter(dat, weight > mean(weight))))`
-
-+ add a column 'weight_kgm' for weight to kilograms\*<br>
-`r kable(head(mutate(dat, weight_kgm = weight * 0.453592)))`
-
-get the log of height for players with age less than or equal to 25 years\*<br>
-`r head((dat %>% filter(age <= 25) %>% mutate(height_log = log(height)) %>% select(height_log))[[1]])`...
+-   create a data frame `gsw_mpg` of GSW players, that contains variables for player name, experience, and `min_per_game` (minutes per game), sorted by `min_per_game` (in descending order).\*<br>
+`r kable(head(gsw_mpg), row.names = FALSE)`
 
 *\* only a small suset is shown using the `head()` function to reduce report length*
+
+### Summarizing values with `summarise()`
+
+-   use `summarise()` to get the largest height value.<br>
+`r dat %>% summarise(max(height))`
+
+-   use `summarise()` to get the standard deviation of `points3`.<br>
+`r dat %>% summarise(sd(points3))`
+
+-   use `summarise()` and `group_by()` to display the median of three-points, by team.<br>
+`r kable((dat %>% group_by(team) %>% summarise(median = median(points3))))`
+
+-   display the average triple points by team, in ascending order, of the bottom-5 teams (worst 3pointer teams)<br>
+`r kable(dat %>% group_by(team) %>% summarise(average = mean(points3)) %>% arrange(average) %>% slice(1:5))`
+
+-   obtain the mean and standard deviation of `age`, for Power Forwards, with 5 and 10 years (including) years of experience.<br>
+`r dat %>% filter(position == "PF" & (experience %in% 5:10)) %>% summarise(mean = mean(age), std_error = sd(age))`
+
+### First contact with `ggplot()`
+```{r contact_ggplot}
+ggplot(gsw)+
+  geom_point(aes(x = height, y = weight))
+
+ggplot(gsw, aes(x = height, y = weight))+
+  geom_point()+
+  geom_text(aes(label = player))
+
+dat %>% filter(team == "GSW") %>% ggplot(aes(x = height, y = weight))+
+  geom_label(aes(label = player))
+
+ggplot(dat, aes(x = salary))+
+  geom_density()
+
+ggplot(dat, aes(x = points2))+
+  geom_histogram(binwidth = 50)
+
+ggplot(dat, aes(x = position))+
+  geom_bar()
+
+dat %>% filter(position == "C") %>% ggplot(aes(x = experience, y = salary))+
+  geom_point()+
+  geom_smooth(method = "lm")
+
+dat %>% filter(position == "C") %>% ggplot(aes(x = experience, y = salary))+
+  geom_point()+
+  geom_smooth(method = "loess")
+```
+
+### Faceting
+```{r faceting}
+ggplot(dat, aes(x = experience, y = salary))+
+  geom_point()+
+  facet_wrap(~ position)
+
+ggplot(dat, aes(x = experience, y = salary))+
+  geom_point()+
+  facet_wrap(~ team)
+
+ggplot(dat, aes(x = age))+
+  geom_density()+
+  facet_wrap(~ team)
+
+ggplot(dat, aes(x = height, y = weight))+
+  geom_point()+
+  facet_wrap(~ position)
+
+ggplot(dat, aes(x = height, y = weight))+
+  geom_point()+
+  geom_density2d()+
+  facet_grid(~ position)
+```
