@@ -21,8 +21,8 @@ knitr::opts_chunk$set(fig.path = "../images/")
 + `dplyr` is used for data wrangling
 + `ggplot2` is used to generate any necessary plots
 
-```{r fxns}
-f <- function(x) {
+```{r}
+f <- function(x){
   x^2
 }
 
@@ -43,7 +43,24 @@ gof <- function(x){
 pythagoras <- function(a, b = a){
   sqrt(a^2 + b^2)
 }
+```
 
++ f(2): `r f(2)`
++ f(-5): `r f(-5)`
+
++ g(0): `r g(0)`
++ g(-5/2): `r g(-5/2)`
+
++ fog(2): `r fog(2)`
++ fog(-5): `r fog(-5)`
+
++ gof(0): `r gof(0)`
++ gof(-5/2): `r gof(-5/2)`
+
++ pythagoras(3, 4): `r pythagoras(3, 4)`
++ pythagoras(5): `r pythagoras(5)`
+
+```{r}
 miles2kms <- function(a = 1){
   a * 1.6
 }
@@ -63,26 +80,7 @@ seconds2years <- function(sec){
   year <- (1/365.25) * day
   year
 }
-
-gaussian <- function(x, m, s){
-  exp(-.5 * ((x - m) / s)^2) / (s * sqrt(2*pi))
-}
 ```
-
-+ f(2): `r f(2)`
-+ f(-5): `r f(-5)`
-
-+ g(0): `r g(0)`
-+ g(-5/2): `r g(-5/2)`
-
-+ fog(2): `r fog(2)`
-+ fog(-5): `r fog(-5)`
-
-+ gof(0): `r gof(0)`
-+ gof(-5/2): `r gof(-5/2)`
-
-+ pythagoras(3, 4): `r pythagoras(3, 4)`
-+ pythagoras(5): `r pythagoras(5)`
 
 + testing `miles2kms()`:
 `r a <- c(1:10, seq(20,100,10)); kable(data.frame("miles" = a, "kms" = miles2kms(a)))`
@@ -93,13 +91,204 @@ gaussian <- function(x, m, s){
 + seconds2years(1000000000) `r seconds2years(1000000000)`<br>
   Can a newborn baby in USA expect to live for one billion (10^9) seconds?<br>
   Yes, because life expectancy is 79 years.
+
+```{r}
+gaussian <- function(x, m, s){
+  exp(-.5 * ((x - m) / s)^2) / (s * sqrt(2*pi))
+}
+
+plot_points <- function(fxn){
+  x <- seq(-4, 4, length.out = 20)
+  y <- fxn(x)
+  plot(x, y, type = "l", lwd = 3, col = "red")
+  abline(h = 0, v = 0)
+  title(main = paste(body(fxn))[2])
+}
+
+poly1 <- function(x){
+  (x^2) * (x - 1)
+}
+
+poly2 <- function(x){
+  x^3
+}
+
+poly3 <- function(x){
+  (x^2 - 1) * (x + 3)^3
+}
+
+poly4 <- function(x){
+  (x^2 - 1) * (x^2 - 9)
+}
+```
   
 + `gaussian()` evaluated at x = 1, m = 0, and s = 2: `r gaussian(1, 0, 2)`<br>
 `dnorm()` fucntion: `r dnorm(1, 0, 2)`
 
-```{r gauss_plot}
+```{r}
 x_values <- seq(-4.5, 4.5, .1)
 y_values <- gaussian(x_values, 0, 2)
 plot(x_values, y_values, type = "l", lwd = 2)
+
+plot_points(poly1)
+plot_points(poly2)
+plot_points(poly3)
+plot_points(poly4)
 ```
 
+```{r}
+descriptive <- function(x){
+  out <- c("min" = min(x),
+           "q1" = quantile(x, probs = .25),
+           "median" = median(x),
+           "mean" = mean(x),
+           "q3" = quantile(x, probs = .75),
+           "max" = max(x),
+           "range" = range(x),
+           "iqr" = IQR(x),
+           "sd" = sd(x))
+  return(out)
+}
+
+combinations <- function(n, k){
+  factorial(n) / (factorial(k) * factorial(n - k))
+}
+
+binom_prob <- function(n, k, prob){
+  combinations(n, k) * prob^k * (1 - prob)^(n-k)
+}
+```
+
++ testing `descriptive()`:<br>
+  `r x <- rnorm(100, 0 , 1); descriptive(x)`
+  
++ testing `combinations()`:<br>
+  `choose(n = 5, k = 2)` = `r choose(n = 5, k = 2)`<br>
+  `combinations(n = 5, k = 2)` = `r combinations(n = 5, k = 2)`
+
++ testing `binom_prob()`:<br>
+  `binom_prob(n = 5, k = 2, prob = 0.5)` = `r binom_prob(n = 5, k = 2, prob = 0.5)`
+  `<br>
+  more than 3 heads in 5 tosses, with a bais of 35%: `r binom_prob(5, 4, .35) + binom_prob(5, 5, .35)`<br>
+  getting 3/6 sixes: `r binom_prob(10, 3, 1/6)`
+  
+```{r}
+squish_0_100 <- function(x){
+  if (x < 0){
+    return(0)
+  } else if (x > 100){
+    return(100)
+  } else {
+    return(x)
+  }
+}
+
+is_even <- function(x){
+  if (is.numeric(x)){
+    if (x %% 2 == 0){
+      return(TRUE)
+    } else {
+      return(FALSE)
+    }
+  } else {
+    return(NA)
+  }
+}
+
+is_odd <- function(x){
+  if (is.na(is_even(x))){
+    return(NA)
+  } else if (is_even(x)){
+    return(FALSE)
+  } else {
+    return(TRUE)
+  }
+}
+```
+
++ testing `squish`:<br>
+  x = -5: `r squish_0_100(-5)`<br>
+  x = 51: `r squish_0_100(51)`<br>
+  x = 175: `r squish_0_100(175)`
+  
++ testing `is_even()`:<br>
+  `is_even(10)`: `r is_even(10)`<br>
+  `is_even(33)`: `r is_even(33)`<br>
+  `is_even('a')`: `r is_even('a')`
+  
++ testing `is_odd()`:<br>
+  `is_odd(1)`: `r is_odd(1)`<br>
+  `is_odd(4)`: `r is_odd(4)`<br>
+  `is_odd('a')`: `r is_odd('a')`
+
+```{r}
+grade <- function(score){
+  if (score > 100 | score < 0){
+    stop("score must be a number between 0 and 100")
+  } else if (score <= 100 & score >= 90){
+    return("A")
+  } else if (score < 90 & score >= 80){
+    return("B")
+  } else if (score < 80 & score >= 70){
+    return("C")
+  } else if (score < 70 & score >= 60){
+    return("D")
+  } else {
+    return("F")
+  }
+}
+```
+
++ testing `grade()`:<br>
+  `grade(score = 90)`: `r grade(score = 90)`<br>
+  `grade(score = 89.9999)`: `r grade(score = 89.9999)`<br>
+  `grade(score = 70.0000001)`: `r grade(score = 70.0000001)`<br>
+  `grade(score = 50)`: `r grade(score = 50)`<br>
+  `grade(score = -5)`: `r #grade(score = -5)`<br>
+  `grade(score = 101)`: `r #grade(score = 101)`
+
+```{r}
+miles2inches <- function(x = 1){
+  x * 63360
+}
+
+miles2feet <- function(x = 1){
+  x * 5280
+}
+
+miles2yards <- function(x = 1){
+  x * 1760
+}
+
+miles2meters <- function(x = 1){
+  x / 0.00062137
+}
+
+miles2kms <- function(x = 1){
+  x / 0.62137
+}
+
+convert <- function(mi, to = "km"){
+  switch(to,
+         "in" = miles2inches(mi),
+         "ft" = miles2feet(mi),
+         "yd" = miles2yards(mi),
+         "m" = miles2meters(mi),
+         "km" = miles2kms(mi),
+         NA)
+}
+```
+
++ testing convertion functions:<br>
+  `miles2inches(2)`: `r miles2inches(2)`<br>
+  `miles2feet(2)`: `r miles2feet(2)`<br>
+  `miles2yards(2)`: `r miles2yards(2)`<br>
+  `miles2meters(2)`: `r miles2meters(2)`<br>
+  `miles2kms(2)`: `r miles2kms(2)`
+  
++ testing `convert()`:<br>
+  `convert(3, "in")`: `r convert(3, "in")`<br>
+  `convert(3, "ft")`: `r convert(3, "ft")`<br>
+  `convert(3, "yd")`: `r convert(3, "yd")`<br>
+  `convert(3, "m")`: `r convert(3, "m")`<br>
+  `convert(3, "km")`: `r convert(3, "km")`
