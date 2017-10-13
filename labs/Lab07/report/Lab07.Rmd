@@ -1,0 +1,105 @@
+---
+title: 'Lab 7: Simple Functions and Conditionals'
+subtitle: "Stat 133, Fall 2017"
+author: "Sudarshan Srirangapatanam"
+output: github_document
+---
+
+## Setup
+
+```{r setup}
+library("knitr")
+library("dplyr")
+library("ggplot2")
+library("readr")
+
+knitr::opts_chunk$set(fig.path = "../images/")
+```
+
++ `knitr` is used for knitting the document as well as other fucntions to cleanup the output
++ `readr` is used for reading data into R
++ `dplyr` is used for data wrangling
++ `ggplot2` is used to generate any necessary plots
+
+```{r fxns}
+f <- function(x) {
+  x^2
+}
+
+g <- function(x){
+  (2*x) +5
+}
+
+fog <- function(x){
+  g_x <- g(x)
+  f(g_x)
+}
+
+gof <- function(x){
+  f_x <- f(x)
+  g(f_x)
+}
+
+pythagoras <- function(a, b = a){
+  sqrt(a^2 + b^2)
+}
+
+miles2kms <- function(a = 1){
+  a * 1.6
+}
+
+gallons2liters <- function(g = 1){
+  g * 3.78541
+}
+
+liters2gallons <- function(l = 1){
+  gallons2liters(l) / gallons2liters(1)^2
+}
+
+seconds2years <- function(sec){
+  min <- (1/60) * sec
+  hour <- (1/60) * min
+  day <- (1/24) * hour
+  year <- (1/365.25) * day
+  year
+}
+
+gaussian <- function(x, m, s){
+  exp(-.5 * ((x - m) / s)^2) / (s * sqrt(2*pi))
+}
+```
+
++ f(2): `r f(2)`
++ f(-5): `r f(-5)`
+
++ g(0): `r g(0)`
++ g(-5/2): `r g(-5/2)`
+
++ fog(2): `r fog(2)`
++ fog(-5): `r fog(-5)`
+
++ gof(0): `r gof(0)`
++ gof(-5/2): `r gof(-5/2)`
+
++ pythagoras(3, 4): `r pythagoras(3, 4)`
++ pythagoras(5): `r pythagoras(5)`
+
++ testing `miles2kms()`:
+`r a <- c(1:10, seq(20,100,10)); kable(data.frame("miles" = a, "kms" = miles2kms(a)))`
+
++ testing `liters2gallons()`:
+`r a <- c(1:10, seq(20,100,10)); kable(data.frame("liters" = a, "gallons" = liters2gallons(a)))`
+
++ seconds2years(1000000000) `r seconds2years(1000000000)`<br>
+  Can a newborn baby in USA expect to live for one billion (10^9) seconds?<br>
+  Yes, because life expectancy is 79 years.
+  
++ `gaussian()` evaluated at x = 1, m = 0, and s = 2: `r gaussian(1, 0, 2)`<br>
+`dnorm()` fucntion: `r dnorm(1, 0, 2)`
+
+```{r gauss_plot}
+x_values <- seq(-4.5, 4.5, .1)
+y_values <- gaussian(x_values, 0, 2)
+plot(x_values, y_values, type = "l", lwd = 2)
+```
+
