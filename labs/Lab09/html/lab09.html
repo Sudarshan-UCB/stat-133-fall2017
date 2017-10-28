@@ -119,7 +119,7 @@ $(document).ready(function () {
 <h1 class="title toc-ignore">Testing a new markdown format</h1>
 <h3 class="subtitle"><em>Stat 133, Fall 2017</em></h3>
 <h4 class="author"><em>Sudarshan Srirangapatanam</em></h4>
-<h4 class="date"><em>Sat Oct 28 09:13:27 2017</em></h4>
+<h4 class="date"><em>Sat Oct 28 09:18:16 2017</em></h4>
 
 </div>
 
@@ -172,8 +172,9 @@ tidy.draws &lt;- function(x, color = &quot;blue&quot;) {
   
   return(dat)
 }</code></pre>
-<p>Above functions are created for the purposes listed below: + <code>sample.box</code>: to simulate 4 draws from box2 without replacement with probabilty given by <em>prob</em> and to simualte 4 draws from box1 with replacement with probability <em>1 - prob</em>. prob defaults to 0.5. Output is a vector of length 4.</p>
+<p>Above functions are created for the purposes listed below:</p>
 <ul>
+<li><p><code>sample.box</code>: to simulate 4 draws from box2 without replacement with probabilty given by <em>prob</em> and to simualte 4 draws from box1 with replacement with probability <em>1 - prob</em>. prob defaults to 0.5. Output is a vector of length 4.</p></li>
 <li><p><code>run.exp1</code>: to simulate draws from boxes number of time given by <em>times</em>. times defaults ot 1. Output is a matrix with i-th row corresponding to i-th game and j-th coloumn corresponding to j-th draw of i-th game.</p></li>
 <li><p><code>tidy.draws</code>: to organize a draws matrix with essential numbers such as total number of <em>color</em> balls in a game. color defaults to blue. Output is a dataframe with game number, number of balls of given colors, label correcponsing to the number of balls, and cumulative sum by labels.</p></li>
 </ul>

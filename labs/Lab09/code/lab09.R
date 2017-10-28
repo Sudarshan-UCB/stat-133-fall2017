@@ -59,6 +59,7 @@ tidy.draws <- function(x, color = "blue") {
 }
 
 #' Above functions are created for the purposes listed below:
+#' 
 #' + `sample.box`: to simulate 4 draws from box2 without replacement with probabilty given by *prob*
 #' and to simualte 4 draws from box1 with replacement with probability *1 - prob*. prob defaults to 0.5.
 #' Output is a vector of length 4.
@@ -133,8 +134,8 @@ server <- function(input, output){
 
 shinyApp(ui = ui, server = server)
 
-/*
+#/*
 rmarkdown::render(input = "lab09.R", output_format = "html_document", output_dir = "../html")
-knitr::spin("lab09.R", knit = FALSE, text = "../report")
 rmarkdown::render(input = "lab09.R", output_format = "github_document", output_dir = "../report", output_options = list(html_preview = FALSE))
-*/
+rmarkdown::render(input = "lab09.R", output_format = "github_document", output_dir = "../report")
+#*/

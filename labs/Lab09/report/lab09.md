@@ -1,7 +1,7 @@
 Testing a new markdown format
 ================
 Sudarshan Srirangapatanam
-Sat Oct 28 09:14:04 2017
+Sat Oct 28 09:18:19 2017
 
 Setup
 -----
@@ -57,7 +57,9 @@ tidy.draws <- function(x, color = "blue") {
 }
 ```
 
-Above functions are created for the purposes listed below: + `sample.box`: to simulate 4 draws from box2 without replacement with probabilty given by *prob* and to simualte 4 draws from box1 with replacement with probability *1 - prob*. prob defaults to 0.5. Output is a vector of length 4.
+Above functions are created for the purposes listed below:
+
+-   `sample.box`: to simulate 4 draws from box2 without replacement with probabilty given by *prob* and to simualte 4 draws from box1 with replacement with probability *1 - prob*. prob defaults to 0.5. Output is a vector of length 4.
 
 -   `run.exp1`: to simulate draws from boxes number of time given by *times*. times defaults ot 1. Output is a matrix with i-th row corresponding to i-th game and j-th coloumn corresponding to j-th draw of i-th game.
 
