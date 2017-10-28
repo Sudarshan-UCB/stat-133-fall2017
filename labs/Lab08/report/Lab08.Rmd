@@ -1,0 +1,268 @@
+---
+title: 'Lab 7: Simple Loops'
+subtitle: "Stat 133, Fall 2017"
+author: "Sudarshan Srirangapatanam"
+output: github_document
+---
+
+## Setup
+
+```{r setup}
+library("knitr")
+library("dplyr")
+library("ggplot2")
+library("readr")
+
+knitr::opts_chunk$set(fig.path = "../images/")
+```
+
++ `knitr` is used for knitting the document as well as other fucntions to cleanup the output
++ `readr` is used for reading data into R
++ `dplyr` is used for data wrangling
++ `ggplot2` is used to generate any necessary plots
+
+```{r intro}
+vec <- c(3, 1, 4)
+for (i in 1:length(vec)){
+  print(vec[i] * 3)
+}
+
+vec2 <- NULL
+for (i in 1:length(vec)){
+  vec2[i] <- vec[i] * 3
+  print(vec2[i])
+}
+```
+
+```{r summation}
+getsum <- function(x, n){
+  total <- 0
+    for (i in 0:n){
+        total <- total + (1 / x^i)
+    }
+  return(total)
+}
+
+vec_getsum <- function(x, a){
+  vec <- NULL
+  for (i in 1:length(a)){
+    vec [i] <- getsum(x, a[i])
+  }
+  return(vec)
+}
+
+vec_getsum(2, 0:5)
+```
+
+$$\sum_{k=0}^{n} \frac{1}{2^k} = 1 + \frac{1}{2} + \frac{1}{4} + \frac{1}{8} + \dots + \frac{1}{2^n}$$
+`r n <- 0:10; kable(data.frame("n" = n, "sum" = vec_getsum(2, n)))`
+
+$$\sum_{k=0}^{n} \frac{1}{9^k} =1 + \frac{1}{9} + \frac{1}{81} + \dots + \frac{1}{9^n}$$
+`r n <- 0:10; kable(data.frame("n" = n, "sum" = vec_getsum(9, n)))`
+
+```{r series}
+arith <- function(n = 1, a1 = 3, d = 3){
+  a <- NULL
+  for (i in 1:n){
+    a[i] <- a1 + ((i - 1) * d)
+  }
+  return(a)
+}
+
+geom_sum <- function(n = 1, a1 = 3, r = 2){
+  a <- NULL
+  for (i in 1:n){
+    a[i] <- a1 * (r^(i - 1))
+  }
+  return(sum(a))
+}
+
+vec_geom_sum <- function(a, a1 = 3, r = 2){
+  vec <- NULL
+  for (i in 1:length(a)){
+    vec [i] <- geom_sum(n = a[i], a1, r)
+  }
+  return(vec)
+}
+```
+
+`r arith(10, 3, 3)`...<br>
+The series doesn't converge.
+
+`r n <- 1:10; kable(data.frame("n" = n, "sum" = vec_geom_sum(a = n)))`
+
+```{r approximation}
+sin_x <- function(x, terms = 1){
+  sign <- rep(c(1, -1), times = terms / 2)
+  if (terms %% 2 == 1){
+    sign <- c(sign, 1)
+  }
+  div <- seq(from = 1, by = 2, length.out = terms)
+  
+  total <- 0
+  for (i in 1:terms){
+  total <- total + ((sign[i] * x^(div[i])) / factorial(div[i]))
+  }
+  return(total)
+}
+```
+
+using 50 terms:<br>
+`r x <- seq(1,2, by = .2) * pi; kable(data.frame("x" = x, "sin_x" = sin_x(x, terms = 50), "sin" = sin(x)))`
+
+using 10 terms:<br>
+`r x <- seq(1,2, by = .2) * pi; kable(data.frame("x" = x, "sin_x" = sin_x(x, terms = 10), "sin" = sin(x)))`
+
+using 5 terms:<br>
+`r x <- seq(1,2, by = .2) * pi; kable(data.frame("x" = x, "sin_x" = sin_x(x, terms = 5), "sin" = sin(x)))`
+
+```{r matrix_loop}
+mod_matrix <- function(A){
+    for (i in 1:nrow(A)){
+    for (j in 1:ncol(A)){
+      if (A[i,j] < 0){
+        A[i,j] <- A[i,j]^2
+      } else {
+        A[i,j] <- sqrt(A[i,j])
+      }
+    }
+    }
+  return(A)
+}
+```
+
+`r kable(mod_matrix(matrix(rnorm(12), nrow = 4, ncol = 3)))`
+
+```{r while_loops}
+reduce <- function(x){
+  while (x %% 2 == 0){
+    x <- x / 2
+    print(x)
+  }
+}
+reduce(898128000)
+```
+
+
+
+```{r avg}
+avg_for <- function(x){
+  total <- 0
+  for (i in 1:length(x)){
+    total <- total + x[i]
+  }
+  return(total / length(x))
+}
+
+avg_while <- function(x){
+  total <- 0
+  i <- 1
+  while (i <= length(x)){
+    total <- total + x[i]
+    i <- i + 1
+  }
+  return(total / length(x))
+}
+
+
+avg_repeat <- function(x){
+  total <- 0
+  i <- 1
+  repeat {
+    total <- total + x[i]
+    i <- i + 1
+    if (i > length(x)){
+      break()
+    }
+  }
+  return(total / length(x))
+}
+```
+
+$$ \bar{x} = \frac{1}{n} \sum_{i=1}^{n} x_i = \frac{x_1 + x_2 + \dots + x_n}{n} $$
+
+using `for` loop: `r avg_for(1:100)`<br>
+using `while` loop: `r avg_while(1:100)`<br>
+using `repeat` loop: `r avg_repeat(1:100)`
+
+```{r sd}
+sd_for <- function(x){
+  total <- 0
+  for (i in 1:length(x)){
+    total <- total + (x[i] - mean(x))^2
+  }
+  return(sqrt(total / (length(x) - 1)))
+}
+
+sd_while <- function(x){
+  total <- 0
+  i <- 1
+  while (i <= length(x)){
+    total <- total + (x[i] - mean(x))^2
+    i <- i + 1
+  }
+  return(sqrt(total / (length(x) - 1)))
+}
+
+
+sd_repeat <- function(x){
+  total <- 0
+  i <- 1
+  repeat {
+    total <- total + (x[i] - mean(x))^2
+    i <- i + 1
+    if (i > length(x)){
+      break()
+    }
+  }
+  return(sqrt(total / (length(x) - 1)))
+}
+```
+
+$$ SD = \sqrt{ \frac{1}{n-1} \sum_{i=1}^{n} (x_i - \bar{x})^2 } $$
+
+using `for` loop: `r sd_for(1:100)`<br>
+using `while` loop: `r sd_while(1:100)`<br>
+using `repeat` loop: `r sd_repeat(1:100)`
+
+```{r geom}
+geom_for <- function(x){
+  prod <- 1
+  for (i in 1:length(x)){
+    prod <- prod * x[i]
+  }
+  return(prod^(1/length(x)))
+}
+
+geom_while <- function(x){
+  prod <- 1
+  i <- 1
+  while (i <= length(x)){
+    prod <- prod * x[i]
+    i <- i + 1
+  }
+  return(prod^(1/length(x)))
+}
+
+
+geom_repeat <- function(x){
+  prod <- 1
+  i <- 1
+  repeat {
+    prod <- prod * x[i]
+    i <- i + 1
+    if (i > length(x)){
+      break()
+    }
+  }
+  return(prod^(1/length(x)))
+}
+```
+
+$$ \bar{x} = \left ( \prod_{i=1}^{n} x_i \right )^{1/n} $$
+
+using `for` loop: `r geom_for(1:50)`<br>
+using `while` loop: `r geom_while(1:50)`<br>
+using `repeat` loop: `r geom_repeat(1:50)`
+
+
