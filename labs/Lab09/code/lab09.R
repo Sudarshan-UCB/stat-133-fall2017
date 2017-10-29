@@ -1,6 +1,5 @@
 #' ---
-#' title: Testing a new markdown format
-#' subtitle: Stat 133, Fall 2017
+#' title: "Lab09: Random Number and Simulations"
 #' author: Sudarshan Srirangapatanam
 #' ---
 
@@ -95,6 +94,9 @@ print(plot_blue)
 #' ## Shiny App code
 
 #+ shinyapp
+
+box1 <- c(rep("blue", 2), "red")
+box2 <- c(rep("blue", 2), rep("red", 3), "white")
 
 ui <- fluidPage(
   

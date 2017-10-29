@@ -1,7 +1,7 @@
-Testing a new markdown format
+Lab09: Random Number and Simulations
 ================
 Sudarshan Srirangapatanam
-Sat Oct 28 09:18:19 2017
+Sat Oct 28 16:30:59 2017
 
 Setup
 -----
@@ -93,6 +93,9 @@ Shiny App code
 --------------
 
 ``` r
+box1 <- c(rep("blue", 2), "red")
+box2 <- c(rep("blue", 2), rep("red", 3), "white")
+
 ui <- fluidPage(
   
   titlePanel("Drawing Balls Experiment"),
