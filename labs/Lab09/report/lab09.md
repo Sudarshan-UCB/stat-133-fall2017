@@ -1,7 +1,7 @@
 Lab09: Random Number and Simulations
 ================
 Sudarshan Srirangapatanam
-Sat Oct 28 16:30:59 2017
+Mon Oct 30 17:16:47 2017
 
 Setup
 -----
