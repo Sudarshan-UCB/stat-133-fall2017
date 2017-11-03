@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link href="data:text/css;charset=utf-8,%0A%40font%2Dface%20%7B%0Afont%2Dfamily%3A%20octicons%2Dlink%3B%0Asrc%3A%20url%28data%3Afont%2Fwoff%3Bcharset%3Dutf%2D8%3Bbase64%2Cd09GRgABAAAAAAZwABAAAAAACFQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABEU0lHAAAGaAAAAAgAAAAIAAAAAUdTVUIAAAZcAAAACgAAAAoAAQAAT1MvMgAAAyQAAABJAAAAYFYEU3RjbWFwAAADcAAAAEUAAACAAJThvmN2dCAAAATkAAAABAAAAAQAAAAAZnBnbQAAA7gAAACyAAABCUM%2B8IhnYXNwAAAGTAAAABAAAAAQABoAI2dseWYAAAFsAAABPAAAAZwcEq9taGVhZAAAAsgAAAA0AAAANgh4a91oaGVhAAADCAAAABoAAAAkCA8DRGhtdHgAAAL8AAAADAAAAAwGAACfbG9jYQAAAsAAAAAIAAAACABiATBtYXhwAAACqAAAABgAAAAgAA8ASm5hbWUAAAToAAABQgAAAlXu73sOcG9zdAAABiwAAAAeAAAAME3QpOBwcmVwAAAEbAAAAHYAAAB%2FaFGpk3jaTY6xa8JAGMW%2FO62BDi0tJLYQincXEypYIiGJjSgHniQ6umTsUEyLm5BV6NDBP8Tpts6F0v%2Bk%2F0an2i%2BitHDw3v2%2B9%2BDBKTzsJNnWJNTgHEy4BgG3EMI9DCEDOGEXzDADU5hBKMIgNPZqoD3SilVaXZCER3%2FI7AtxEJLtzzuZfI%2BVVkprxTlXShWKb3TBecG11rwoNlmmn1P2WYcJczl32etSpKnziC7lQyWe1smVPy%2FLt7Kc%2B0vWY%2FgAgIIEqAN9we0pwKXreiMasxvabDQMM4riO%2BqxM2ogwDGOZTXxwxDiycQIcoYFBLj5K3EIaSctAq2kTYiw%2Bymhce7vwM9jSqO8JyVd5RH9gyTt2%2BJ%2FyUmYlIR0s04n6%2B7Vm1ozezUeLEaUjhaDSuXHwVRgvLJn1tQ7xiuVv%2FocTRF42mNgZGBgYGbwZOBiAAFGJBIMAAizAFoAAABiAGIAznjaY2BkYGAA4in8zwXi%2BW2%2BMjCzMIDApSwvXzC97Z4Ig8N%2FBxYGZgcgl52BCSQKAA3jCV8CAABfAAAAAAQAAEB42mNgZGBg4f3vACQZQABIMjKgAmYAKEgBXgAAeNpjYGY6wTiBgZWBg2kmUxoDA4MPhGZMYzBi1AHygVLYQUCaawqDA4PChxhmh%2F8ODDEsvAwHgMKMIDnGL0x7gJQCAwMAJd4MFwAAAHjaY2BgYGaA4DAGRgYQkAHyGMF8NgYrIM3JIAGVYYDT%2BAEjAwuDFpBmA9KMDEwMCh9i%2Fv8H8sH0%2F4dQc1iAmAkALaUKLgAAAHjaTY9LDsIgEIbtgqHUPpDi3gPoBVyRTmTddOmqTXThEXqrob2gQ1FjwpDvfwCBdmdXC5AVKFu3e5MfNFJ29KTQT48Ob9%2FlqYwOGZxeUelN2U2R6%2BcArgtCJpauW7UQBqnFkUsjAY%2FkOU1cP%2BDAgvxwn1chZDwUbd6CFimGXwzwF6tPbFIcjEl%2BvvmM%2FbyA48e6tWrKArm4ZJlCbdsrxksL1AwWn%2FyBSJKpYbq8AXaaTb8AAHja28jAwOC00ZrBeQNDQOWO%2F%2FsdBBgYGRiYWYAEELEwMTE4uzo5Zzo5b2BxdnFOcALxNjA6b2ByTswC8jYwg0VlNuoCTWAMqNzMzsoK1rEhNqByEyerg5PMJlYuVueETKcd%2F89uBpnpvIEVomeHLoMsAAe1Id4AAAAAAAB42oWQT07CQBTGv0JBhagk7HQzKxca2sJCE1hDt4QF%2B9JOS0nbaaYDCQfwCJ7Au3AHj%2BLO13FMmm6cl7785vven0kBjHCBhfpYuNa5Ph1c0e2Xu3jEvWG7UdPDLZ4N92nOm%2BEBXuAbHmIMSRMs%2B4aUEd4Nd3CHD8NdvOLTsA2GL8M9PODbcL%2BhD7C1xoaHeLJSEao0FEW14ckxC%2BTU8TxvsY6X0eLPmRhry2WVioLpkrbp84LLQPGI7c6sOiUzpWIWS5GzlSgUzzLBSikOPFTOXqly7rqx0Z1Q5BAIoZBSFihQYQOOBEdkCOgXTOHA07HAGjGWiIjaPZNW13%2F%2Blm6S9FT7rLHFJ6fQbkATOG1j2OFMucKJJsxIVfQORl%2B9Jyda6Sl1dUYhSCm1dyClfoeDve4qMYdLEbfqHf3O%2FAdDumsjAAB42mNgYoAAZQYjBmyAGYQZmdhL8zLdDEydARfoAqIAAAABAAMABwAKABMAB%2F%2F%2FAA8AAQAAAAAAAAAAAAAAAAABAAAAAA%3D%3D%29%20format%28%27woff%27%29%3B%0A%7D%0Abody%20%7B%0A%2Dwebkit%2Dtext%2Dsize%2Dadjust%3A%20100%25%3B%0Atext%2Dsize%2Dadjust%3A%20100%25%3B%0Acolor%3A%20%23333%3B%0Afont%2Dfamily%3A%20%22Helvetica%20Neue%22%2C%20Helvetica%2C%20%22Segoe%20UI%22%2C%20Arial%2C%20freesans%2C%20sans%2Dserif%2C%20%22Apple%20Color%20Emoji%22%2C%20%22Segoe%20UI%20Emoji%22%2C%20%22Segoe%20UI%20Symbol%22%3B%0Afont%2Dsize%3A%2016px%3B%0Aline%2Dheight%3A%201%2E6%3B%0Aword%2Dwrap%3A%20break%2Dword%3B%0A%7D%0Aa%20%7B%0Abackground%2Dcolor%3A%20transparent%3B%0A%7D%0Aa%3Aactive%2C%0Aa%3Ahover%20%7B%0Aoutline%3A%200%3B%0A%7D%0Astrong%20%7B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0Ah1%20%7B%0Afont%2Dsize%3A%202em%3B%0Amargin%3A%200%2E67em%200%3B%0A%7D%0Aimg%20%7B%0Aborder%3A%200%3B%0A%7D%0Ahr%20%7B%0Abox%2Dsizing%3A%20content%2Dbox%3B%0Aheight%3A%200%3B%0A%7D%0Apre%20%7B%0Aoverflow%3A%20auto%3B%0A%7D%0Acode%2C%0Akbd%2C%0Apre%20%7B%0Afont%2Dfamily%3A%20monospace%2C%20monospace%3B%0Afont%2Dsize%3A%201em%3B%0A%7D%0Ainput%20%7B%0Acolor%3A%20inherit%3B%0Afont%3A%20inherit%3B%0Amargin%3A%200%3B%0A%7D%0Ahtml%20input%5Bdisabled%5D%20%7B%0Acursor%3A%20default%3B%0A%7D%0Ainput%20%7B%0Aline%2Dheight%3A%20normal%3B%0A%7D%0Ainput%5Btype%3D%22checkbox%22%5D%20%7B%0Abox%2Dsizing%3A%20border%2Dbox%3B%0Apadding%3A%200%3B%0A%7D%0Atable%20%7B%0Aborder%2Dcollapse%3A%20collapse%3B%0Aborder%2Dspacing%3A%200%3B%0A%7D%0Atd%2C%0Ath%20%7B%0Apadding%3A%200%3B%0A%7D%0A%2A%20%7B%0Abox%2Dsizing%3A%20border%2Dbox%3B%0A%7D%0Ainput%20%7B%0Afont%3A%2013px%20%2F%201%2E4%20Helvetica%2C%20arial%2C%20nimbussansl%2C%20liberationsans%2C%20freesans%2C%20clean%2C%20sans%2Dserif%2C%20%22Apple%20Color%20Emoji%22%2C%20%22Segoe%20UI%20Emoji%22%2C%20%22Segoe%20UI%20Symbol%22%3B%0A%7D%0Aa%20%7B%0Acolor%3A%20%234078c0%3B%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0Aa%3Ahover%2C%0Aa%3Aactive%20%7B%0Atext%2Ddecoration%3A%20underline%3B%0A%7D%0Ahr%20%7B%0Aheight%3A%200%3B%0Amargin%3A%2015px%200%3B%0Aoverflow%3A%20hidden%3B%0Abackground%3A%20transparent%3B%0Aborder%3A%200%3B%0Aborder%2Dbottom%3A%201px%20solid%20%23ddd%3B%0A%7D%0Ahr%3Abefore%20%7B%0Adisplay%3A%20table%3B%0Acontent%3A%20%22%22%3B%0A%7D%0Ahr%3Aafter%20%7B%0Adisplay%3A%20table%3B%0Aclear%3A%20both%3B%0Acontent%3A%20%22%22%3B%0A%7D%0Ah1%2C%0Ah2%2C%0Ah3%2C%0Ah4%2C%0Ah5%2C%0Ah6%20%7B%0Amargin%2Dtop%3A%2015px%3B%0Amargin%2Dbottom%3A%2015px%3B%0Aline%2Dheight%3A%201%2E1%3B%0A%7D%0Ah1%20%7B%0Afont%2Dsize%3A%2030px%3B%0A%7D%0Ah2%20%7B%0Afont%2Dsize%3A%2021px%3B%0A%7D%0Ah3%20%7B%0Afont%2Dsize%3A%2016px%3B%0A%7D%0Ah4%20%7B%0Afont%2Dsize%3A%2014px%3B%0A%7D%0Ah5%20%7B%0Afont%2Dsize%3A%2012px%3B%0A%7D%0Ah6%20%7B%0Afont%2Dsize%3A%2011px%3B%0A%7D%0Ablockquote%20%7B%0Amargin%3A%200%3B%0A%7D%0Aul%2C%0Aol%20%7B%0Apadding%3A%200%3B%0Amargin%2Dtop%3A%200%3B%0Amargin%2Dbottom%3A%200%3B%0A%7D%0Aol%20ol%2C%0Aul%20ol%20%7B%0Alist%2Dstyle%2Dtype%3A%20lower%2Droman%3B%0A%7D%0Aul%20ul%20ol%2C%0Aul%20ol%20ol%2C%0Aol%20ul%20ol%2C%0Aol%20ol%20ol%20%7B%0Alist%2Dstyle%2Dtype%3A%20lower%2Dalpha%3B%0A%7D%0Add%20%7B%0Amargin%2Dleft%3A%200%3B%0A%7D%0Acode%20%7B%0Afont%2Dfamily%3A%20Consolas%2C%20%22Liberation%20Mono%22%2C%20Menlo%2C%20Courier%2C%20monospace%3B%0Afont%2Dsize%3A%2012px%3B%0A%7D%0Apre%20%7B%0Amargin%2Dtop%3A%200%3B%0Amargin%2Dbottom%3A%200%3B%0Afont%3A%2012px%20Consolas%2C%20%22Liberation%20Mono%22%2C%20Menlo%2C%20Courier%2C%20monospace%3B%0A%7D%0A%2Eselect%3A%3A%2Dms%2Dexpand%20%7B%0Aopacity%3A%200%3B%0A%7D%0A%2Eocticon%20%7B%0Afont%3A%20normal%20normal%20normal%2016px%2F1%20octicons%2Dlink%3B%0Adisplay%3A%20inline%2Dblock%3B%0Atext%2Ddecoration%3A%20none%3B%0Atext%2Drendering%3A%20auto%3B%0A%2Dwebkit%2Dfont%2Dsmoothing%3A%20antialiased%3B%0A%2Dmoz%2Dosx%2Dfont%2Dsmoothing%3A%20grayscale%3B%0A%2Dwebkit%2Duser%2Dselect%3A%20none%3B%0A%2Dmoz%2Duser%2Dselect%3A%20none%3B%0A%2Dms%2Duser%2Dselect%3A%20none%3B%0Auser%2Dselect%3A%20none%3B%0A%7D%0A%2Eocticon%2Dlink%3Abefore%20%7B%0Acontent%3A%20%27%5Cf05c%27%3B%0A%7D%0A%2Emarkdown%2Dbody%3Abefore%20%7B%0Adisplay%3A%20table%3B%0Acontent%3A%20%22%22%3B%0A%7D%0A%2Emarkdown%2Dbody%3Aafter%20%7B%0Adisplay%3A%20table%3B%0Aclear%3A%20both%3B%0Acontent%3A%20%22%22%3B%0A%7D%0A%2Emarkdown%2Dbody%3E%2A%3Afirst%2Dchild%20%7B%0Amargin%2Dtop%3A%200%20%21important%3B%0A%7D%0A%2Emarkdown%2Dbody%3E%2A%3Alast%2Dchild%20%7B%0Amargin%2Dbottom%3A%200%20%21important%3B%0A%7D%0Aa%3Anot%28%5Bhref%5D%29%20%7B%0Acolor%3A%20inherit%3B%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0A%2Eanchor%20%7B%0Adisplay%3A%20inline%2Dblock%3B%0Apadding%2Dright%3A%202px%3B%0Amargin%2Dleft%3A%20%2D18px%3B%0A%7D%0A%2Eanchor%3Afocus%20%7B%0Aoutline%3A%20none%3B%0A%7D%0Ah1%2C%0Ah2%2C%0Ah3%2C%0Ah4%2C%0Ah5%2C%0Ah6%20%7B%0Amargin%2Dtop%3A%201em%3B%0Amargin%2Dbottom%3A%2016px%3B%0Afont%2Dweight%3A%20bold%3B%0Aline%2Dheight%3A%201%2E4%3B%0A%7D%0Ah1%20%2Eocticon%2Dlink%2C%0Ah2%20%2Eocticon%2Dlink%2C%0Ah3%20%2Eocticon%2Dlink%2C%0Ah4%20%2Eocticon%2Dlink%2C%0Ah5%20%2Eocticon%2Dlink%2C%0Ah6%20%2Eocticon%2Dlink%20%7B%0Acolor%3A%20%23000%3B%0Avertical%2Dalign%3A%20middle%3B%0Avisibility%3A%20hidden%3B%0A%7D%0Ah1%3Ahover%20%2Eanchor%2C%0Ah2%3Ahover%20%2Eanchor%2C%0Ah3%3Ahover%20%2Eanchor%2C%0Ah4%3Ahover%20%2Eanchor%2C%0Ah5%3Ahover%20%2Eanchor%2C%0Ah6%3Ahover%20%2Eanchor%20%7B%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0Ah1%3Ahover%20%2Eanchor%20%2Eocticon%2Dlink%2C%0Ah2%3Ahover%20%2Eanchor%20%2Eocticon%2Dlink%2C%0Ah3%3Ahover%20%2Eanchor%20%2Eocticon%2Dlink%2C%0Ah4%3Ahover%20%2Eanchor%20%2Eocticon%2Dlink%2C%0Ah5%3Ahover%20%2Eanchor%20%2Eocticon%2Dlink%2C%0Ah6%3Ahover%20%2Eanchor%20%2Eocticon%2Dlink%20%7B%0Avisibility%3A%20visible%3B%0A%7D%0Ah1%20%7B%0Apadding%2Dbottom%3A%200%2E3em%3B%0Afont%2Dsize%3A%202%2E25em%3B%0Aline%2Dheight%3A%201%2E2%3B%0Aborder%2Dbottom%3A%201px%20solid%20%23eee%3B%0A%7D%0Ah1%20%2Eanchor%20%7B%0Aline%2Dheight%3A%201%3B%0A%7D%0Ah2%20%7B%0Apadding%2Dbottom%3A%200%2E3em%3B%0Afont%2Dsize%3A%201%2E75em%3B%0Aline%2Dheight%3A%201%2E225%3B%0Aborder%2Dbottom%3A%201px%20solid%20%23eee%3B%0A%7D%0Ah2%20%2Eanchor%20%7B%0Aline%2Dheight%3A%201%3B%0A%7D%0Ah3%20%7B%0Afont%2Dsize%3A%201%2E5em%3B%0Aline%2Dheight%3A%201%2E43%3B%0A%7D%0Ah3%20%2Eanchor%20%7B%0Aline%2Dheight%3A%201%2E2%3B%0A%7D%0Ah4%20%7B%0Afont%2Dsize%3A%201%2E25em%3B%0A%7D%0Ah4%20%2Eanchor%20%7B%0Aline%2Dheight%3A%201%2E2%3B%0A%7D%0Ah5%20%7B%0Afont%2Dsize%3A%201em%3B%0A%7D%0Ah5%20%2Eanchor%20%7B%0Aline%2Dheight%3A%201%2E1%3B%0A%7D%0Ah6%20%7B%0Afont%2Dsize%3A%201em%3B%0Acolor%3A%20%23777%3B%0A%7D%0Ah6%20%2Eanchor%20%7B%0Aline%2Dheight%3A%201%2E1%3B%0A%7D%0Ap%2C%0Ablockquote%2C%0Aul%2C%0Aol%2C%0Adl%2C%0Atable%2C%0Apre%20%7B%0Amargin%2Dtop%3A%200%3B%0Amargin%2Dbottom%3A%2016px%3B%0A%7D%0Ahr%20%7B%0Aheight%3A%204px%3B%0Apadding%3A%200%3B%0Amargin%3A%2016px%200%3B%0Abackground%2Dcolor%3A%20%23e7e7e7%3B%0Aborder%3A%200%20none%3B%0A%7D%0Aul%2C%0Aol%20%7B%0Apadding%2Dleft%3A%202em%3B%0A%7D%0Aul%20ul%2C%0Aul%20ol%2C%0Aol%20ol%2C%0Aol%20ul%20%7B%0Amargin%2Dtop%3A%200%3B%0Amargin%2Dbottom%3A%200%3B%0A%7D%0Ali%3Ep%20%7B%0Amargin%2Dtop%3A%2016px%3B%0A%7D%0Adl%20%7B%0Apadding%3A%200%3B%0A%7D%0Adl%20dt%20%7B%0Apadding%3A%200%3B%0Amargin%2Dtop%3A%2016px%3B%0Afont%2Dsize%3A%201em%3B%0Afont%2Dstyle%3A%20italic%3B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0Adl%20dd%20%7B%0Apadding%3A%200%2016px%3B%0Amargin%2Dbottom%3A%2016px%3B%0A%7D%0Ablockquote%20%7B%0Apadding%3A%200%2015px%3B%0Acolor%3A%20%23777%3B%0Aborder%2Dleft%3A%204px%20solid%20%23ddd%3B%0A%7D%0Ablockquote%3E%3Afirst%2Dchild%20%7B%0Amargin%2Dtop%3A%200%3B%0A%7D%0Ablockquote%3E%3Alast%2Dchild%20%7B%0Amargin%2Dbottom%3A%200%3B%0A%7D%0Atable%20%7B%0Adisplay%3A%20block%3B%0Awidth%3A%20100%25%3B%0Aoverflow%3A%20auto%3B%0Aword%2Dbreak%3A%20normal%3B%0Aword%2Dbreak%3A%20keep%2Dall%3B%0A%7D%0Atable%20th%20%7B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0Atable%20th%2C%0Atable%20td%20%7B%0Apadding%3A%206px%2013px%3B%0Aborder%3A%201px%20solid%20%23ddd%3B%0A%7D%0Atable%20tr%20%7B%0Abackground%2Dcolor%3A%20%23fff%3B%0Aborder%2Dtop%3A%201px%20solid%20%23ccc%3B%0A%7D%0Atable%20tr%3Anth%2Dchild%282n%29%20%7B%0Abackground%2Dcolor%3A%20%23f8f8f8%3B%0A%7D%0Aimg%20%7B%0Amax%2Dwidth%3A%20100%25%3B%0Abox%2Dsizing%3A%20content%2Dbox%3B%0Abackground%2Dcolor%3A%20%23fff%3B%0A%7D%0Acode%20%7B%0Apadding%3A%200%3B%0Apadding%2Dtop%3A%200%2E2em%3B%0Apadding%2Dbottom%3A%200%2E2em%3B%0Amargin%3A%200%3B%0Afont%2Dsize%3A%2085%25%3B%0Abackground%2Dcolor%3A%20rgba%280%2C0%2C0%2C0%2E04%29%3B%0Aborder%2Dradius%3A%203px%3B%0A%7D%0Acode%3Abefore%2C%0Acode%3Aafter%20%7B%0Aletter%2Dspacing%3A%20%2D0%2E2em%3B%0Acontent%3A%20%22%5C00a0%22%3B%0A%7D%0Apre%3Ecode%20%7B%0Apadding%3A%200%3B%0Amargin%3A%200%3B%0Afont%2Dsize%3A%20100%25%3B%0Aword%2Dbreak%3A%20normal%3B%0Awhite%2Dspace%3A%20pre%3B%0Abackground%3A%20transparent%3B%0Aborder%3A%200%3B%0A%7D%0A%2Ehighlight%20%7B%0Amargin%2Dbottom%3A%2016px%3B%0A%7D%0A%2Ehighlight%20pre%2C%0Apre%20%7B%0Apadding%3A%2016px%3B%0Aoverflow%3A%20auto%3B%0Afont%2Dsize%3A%2085%25%3B%0Aline%2Dheight%3A%201%2E45%3B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0Aborder%2Dradius%3A%203px%3B%0A%7D%0A%2Ehighlight%20pre%20%7B%0Amargin%2Dbottom%3A%200%3B%0Aword%2Dbreak%3A%20normal%3B%0A%7D%0Apre%20%7B%0Aword%2Dwrap%3A%20normal%3B%0A%7D%0Apre%20code%20%7B%0Adisplay%3A%20inline%3B%0Amax%2Dwidth%3A%20initial%3B%0Apadding%3A%200%3B%0Amargin%3A%200%3B%0Aoverflow%3A%20initial%3B%0Aline%2Dheight%3A%20inherit%3B%0Aword%2Dwrap%3A%20normal%3B%0Abackground%2Dcolor%3A%20transparent%3B%0Aborder%3A%200%3B%0A%7D%0Apre%20code%3Abefore%2C%0Apre%20code%3Aafter%20%7B%0Acontent%3A%20normal%3B%0A%7D%0Akbd%20%7B%0Adisplay%3A%20inline%2Dblock%3B%0Apadding%3A%203px%205px%3B%0Afont%2Dsize%3A%2011px%3B%0Aline%2Dheight%3A%2010px%3B%0Acolor%3A%20%23555%3B%0Avertical%2Dalign%3A%20middle%3B%0Abackground%2Dcolor%3A%20%23fcfcfc%3B%0Aborder%3A%20solid%201px%20%23ccc%3B%0Aborder%2Dbottom%2Dcolor%3A%20%23bbb%3B%0Aborder%2Dradius%3A%203px%3B%0Abox%2Dshadow%3A%20inset%200%20%2D1px%200%20%23bbb%3B%0A%7D%0A%2Epl%2Dc%20%7B%0Acolor%3A%20%23969896%3B%0A%7D%0A%2Epl%2Dc1%2C%0A%2Epl%2Ds%20%2Epl%2Dv%20%7B%0Acolor%3A%20%230086b3%3B%0A%7D%0A%2Epl%2De%2C%0A%2Epl%2Den%20%7B%0Acolor%3A%20%23795da3%3B%0A%7D%0A%2Epl%2Ds%20%2Epl%2Ds1%2C%0A%2Epl%2Dsmi%20%7B%0Acolor%3A%20%23333%3B%0A%7D%0A%2Epl%2Dent%20%7B%0Acolor%3A%20%2363a35c%3B%0A%7D%0A%2Epl%2Dk%20%7B%0Acolor%3A%20%23a71d5d%3B%0A%7D%0A%2Epl%2Dpds%2C%0A%2Epl%2Ds%2C%0A%2Epl%2Ds%20%2Epl%2Dpse%20%2Epl%2Ds1%2C%0A%2Epl%2Dsr%2C%0A%2Epl%2Dsr%20%2Epl%2Dcce%2C%0A%2Epl%2Dsr%20%2Epl%2Dsra%2C%0A%2Epl%2Dsr%20%2Epl%2Dsre%20%7B%0Acolor%3A%20%23183691%3B%0A%7D%0A%2Epl%2Dv%20%7B%0Acolor%3A%20%23ed6a43%3B%0A%7D%0A%2Epl%2Did%20%7B%0Acolor%3A%20%23b52a1d%3B%0A%7D%0A%2Epl%2Dii%20%7B%0Abackground%2Dcolor%3A%20%23b52a1d%3B%0Acolor%3A%20%23f8f8f8%3B%0A%7D%0A%2Epl%2Dsr%20%2Epl%2Dcce%20%7B%0Acolor%3A%20%2363a35c%3B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0A%2Epl%2Dml%20%7B%0Acolor%3A%20%23693a17%3B%0A%7D%0A%2Epl%2Dmh%2C%0A%2Epl%2Dmh%20%2Epl%2Den%2C%0A%2Epl%2Dms%20%7B%0Acolor%3A%20%231d3e81%3B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0A%2Epl%2Dmq%20%7B%0Acolor%3A%20%23008080%3B%0A%7D%0A%2Epl%2Dmi%20%7B%0Acolor%3A%20%23333%3B%0Afont%2Dstyle%3A%20italic%3B%0A%7D%0A%2Epl%2Dmb%20%7B%0Acolor%3A%20%23333%3B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0A%2Epl%2Dmd%20%7B%0Abackground%2Dcolor%3A%20%23ffecec%3B%0Acolor%3A%20%23bd2c00%3B%0A%7D%0A%2Epl%2Dmi1%20%7B%0Abackground%2Dcolor%3A%20%23eaffea%3B%0Acolor%3A%20%2355a532%3B%0A%7D%0A%2Epl%2Dmdr%20%7B%0Acolor%3A%20%23795da3%3B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0A%2Epl%2Dmo%20%7B%0Acolor%3A%20%231d3e81%3B%0A%7D%0Akbd%20%7B%0Adisplay%3A%20inline%2Dblock%3B%0Apadding%3A%203px%205px%3B%0Afont%3A%2011px%20Consolas%2C%20%22Liberation%20Mono%22%2C%20Menlo%2C%20Courier%2C%20monospace%3B%0Aline%2Dheight%3A%2010px%3B%0Acolor%3A%20%23555%3B%0Avertical%2Dalign%3A%20middle%3B%0Abackground%2Dcolor%3A%20%23fcfcfc%3B%0Aborder%3A%20solid%201px%20%23ccc%3B%0Aborder%2Dbottom%2Dcolor%3A%20%23bbb%3B%0Aborder%2Dradius%3A%203px%3B%0Abox%2Dshadow%3A%20inset%200%20%2D1px%200%20%23bbb%3B%0A%7D%0A%2Etask%2Dlist%2Ditem%20%7B%0Alist%2Dstyle%2Dtype%3A%20none%3B%0A%7D%0A%2Etask%2Dlist%2Ditem%2B%2Etask%2Dlist%2Ditem%20%7B%0Amargin%2Dtop%3A%203px%3B%0A%7D%0A%2Etask%2Dlist%2Ditem%20input%20%7B%0Amargin%3A%200%200%2E35em%200%2E25em%20%2D1%2E6em%3B%0Avertical%2Dalign%3A%20middle%3B%0A%7D%0A%3Achecked%2B%2Eradio%2Dlabel%20%7B%0Az%2Dindex%3A%201%3B%0Aposition%3A%20relative%3B%0Aborder%2Dcolor%3A%20%234078c0%3B%0A%7D%0Acode%20%3E%20%2Ekw%20%7B%20color%3A%20%23000000%3B%20%7D%0Acode%20%3E%20%2Edt%20%7B%20color%3A%20%23ed6a43%3B%20%7D%0Acode%20%3E%20%2Edv%20%7B%20color%3A%20%23009999%3B%20%7D%0Acode%20%3E%20%2Ebn%20%7B%20color%3A%20%23009999%3B%20%7D%0Acode%20%3E%20%2Efl%20%7B%20color%3A%20%23009999%3B%20%7D%0Acode%20%3E%20%2Ech%20%7B%20color%3A%20%23009999%3B%20%7D%0Acode%20%3E%20%2Est%20%7B%20color%3A%20%23183691%3B%20%7D%0Acode%20%3E%20%2Eco%20%7B%20color%3A%20%23969896%3B%20%7D%0Acode%20%3E%20%2Eot%20%7B%20color%3A%20%230086b3%3B%20%7D%0Acode%20%3E%20%2Eal%20%7B%20color%3A%20%23a61717%3B%20%7D%0Acode%20%3E%20%2Efu%20%7B%20color%3A%20%2363a35c%3B%20%7D%0Acode%20%3E%20%2Eer%20%7B%20color%3A%20%23a61717%3B%20background%2Dcolor%3A%20%23e3d2d2%3B%20%7D%0Acode%20%3E%20%2Ewa%20%7B%20color%3A%20%23000000%3B%20%7D%0Acode%20%3E%20%2Ecn%20%7B%20color%3A%20%23008080%3B%20%7D%0Acode%20%3E%20%2Esc%20%7B%20color%3A%20%23008080%3B%20%7D%0Acode%20%3E%20%2Evs%20%7B%20color%3A%20%23183691%3B%20%7D%0Acode%20%3E%20%2Ess%20%7B%20color%3A%20%23183691%3B%20%7D%0Acode%20%3E%20%2Eim%20%7B%20color%3A%20%23000000%3B%20%7D%0Acode%20%3E%20%2Eva%20%7Bcolor%3A%20%23008080%3B%20%7D%0Acode%20%3E%20%2Ecf%20%7B%20color%3A%20%23000000%3B%20%7D%0Acode%20%3E%20%2Eop%20%7B%20color%3A%20%23000000%3B%20%7D%0Acode%20%3E%20%2Ebu%20%7B%20color%3A%20%23000000%3B%20%7D%0Acode%20%3E%20%2Eex%20%7B%20color%3A%20%23000000%3B%20%7D%0Acode%20%3E%20%2Epp%20%7B%20color%3A%20%23999999%3B%20%7D%0Acode%20%3E%20%2Eat%20%7B%20color%3A%20%23008080%3B%20%7D%0Acode%20%3E%20%2Edo%20%7B%20color%3A%20%23969896%3B%20%7D%0Acode%20%3E%20%2Ean%20%7B%20color%3A%20%23008080%3B%20%7D%0Acode%20%3E%20%2Ecv%20%7B%20color%3A%20%23008080%3B%20%7D%0Acode%20%3E%20%2Ein%20%7B%20color%3A%20%23008080%3B%20%7D%0A" rel="stylesheet">
+<style>
+body {
+  box-sizing: border-box;
+  min-width: 200px;
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 45px;
+  padding-top: 0px;
+}
+</style>
+
+</head>
+
+<body>
+
+<h1 id="lab10">Lab10</h1>
+<p>Sudarshan Srirangapatanam<br />
+Fri Nov 03 15:52:24 2017</p>
+<ul>
+<li><a href="#setup">Setup</a>
+<ul>
+<li><a href="#case-folding-on-states">Case folding on states:</a></li>
+<li><a href="#frequency-table-on-chars">Frequency table on chars</a></li>
+<li><a href="#pasting-strings">Pasting strings</a></li>
+<li><a href="#substrings">Substrings</a></li>
+<li><a href="#challenge">Challenge</a></li>
+</ul></li>
+<li><a href="#converting-from-fahrenheit-degrees">Converting from Fahrenheit Degrees</a>
+<ul>
+<li><a href="#original-function">Original function</a></li>
+<li><a href="#fucntion-updates">Fucntion updates</a></li>
+</ul></li>
+<li><a href="#names-of-files">Names of files</a></li>
+<li><a href="#using-function-cat">Using function <code>cat()</code></a></li>
+<li><a href="#valid-color-names">Valid Color Names</a>
+<ul>
+<li><a href="#plot-with-a-valid-color">Plot with a valid color</a></li>
+</ul></li>
+<li><a href="#counting-number-of-vowels">Counting number of vowels</a>
+<ul>
+<li><a href="#number-of-letters-vowels-and-consonants">Number of letters, vowels, and consonants</a></li>
+</ul></li>
+</ul>
+<h2 id="setup">Setup</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(knitr)
+<span class="kw">library</span>(dplyr)
+<span class="kw">library</span>(ggplot2)
+<span class="kw">library</span>(readr)
+<span class="kw">library</span>(shiny)
+
+knitr::opts_chunk$<span class="kw">set</span>(<span class="dt">fig.path =</span> <span class="st">&quot;../images/&quot;</span>)</code></pre></div>
+<ul>
+<li><code>knitr</code> is used for knitting the document as well as other fucntions to cleanup the output</li>
+<li><code>readr</code> is used for reading data into R</li>
+<li><code>dplyr</code> is used for data wrangling</li>
+<li><code>ggplot2</code> is used to generate any necessary plots</li>
+<li><code>shiny</code> is used for shiny apps ## Reading <code>USArrests</code></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">states &lt;-<span class="st"> </span><span class="kw">rownames</span>(USArrests)
+
+<span class="kw">head</span>(USArrests)</code></pre></div>
+<pre><code>##            Murder Assault UrbanPop Rape
+## Alabama      13.2     236       58 21.2
+## Alaska       10.0     263       48 44.5
+## Arizona       8.1     294       80 31.0
+## Arkansas      8.8     190       50 19.5
+## California    9.0     276       91 40.6
+## Colorado      7.9     204       78 38.7</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(states)</code></pre></div>
+<pre><code>## [1] &quot;Alabama&quot;    &quot;Alaska&quot;     &quot;Arizona&quot;    &quot;Arkansas&quot;   &quot;California&quot;
+## [6] &quot;Colorado&quot;</code></pre>
+<p><em><code>nchar()</code> on states:</em></p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">states</th>
+<th align="right">nchar..</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Alabama</td>
+<td align="right">7</td>
+</tr>
+<tr class="even">
+<td align="left">Alaska</td>
+<td align="right">6</td>
+</tr>
+<tr class="odd">
+<td align="left">Arizona</td>
+<td align="right">7</td>
+</tr>
+<tr class="even">
+<td align="left">Arkansas</td>
+<td align="right">8</td>
+</tr>
+<tr class="odd">
+<td align="left">California</td>
+<td align="right">10</td>
+</tr>
+<tr class="even">
+<td align="left">Colorado</td>
+<td align="right">8</td>
+</tr>
+</tbody>
+</table>
+<h3 id="case-folding-on-states">Case folding on states:</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">casefold &lt;-<span class="st"> </span><span class="kw">data.frame</span>(states,
+                       <span class="st">&quot;tolower&quot;</span> =<span class="st"> </span><span class="kw">tolower</span>(states),
+                       <span class="st">&quot;toupper&quot;</span> =<span class="st"> </span><span class="kw">toupper</span>(states),
+                       <span class="st">&quot;(upper = TRUE)&quot;</span> =<span class="st"> </span><span class="kw">casefold</span>(states, <span class="dt">upper =</span> <span class="ot">TRUE</span>),
+                       <span class="st">&quot;(upper = FALSE)&quot;</span> =<span class="st"> </span><span class="kw">casefold</span>(states, <span class="dt">upper =</span> <span class="ot">FALSE</span>))
+<span class="kw">head</span>(casefold)</code></pre></div>
+<pre><code>##       states    tolower    toupper X.upper...TRUE. X.upper...FALSE.
+## 1    Alabama    alabama    ALABAMA         ALABAMA          alabama
+## 2     Alaska     alaska     ALASKA          ALASKA           alaska
+## 3    Arizona    arizona    ARIZONA         ARIZONA          arizona
+## 4   Arkansas   arkansas   ARKANSAS        ARKANSAS         arkansas
+## 5 California california CALIFORNIA      CALIFORNIA       california
+## 6   Colorado   colorado   COLORADO        COLORADO         colorado</code></pre>
+<h3 id="frequency-table-on-chars">Frequency table on chars</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">num_chars &lt;-<span class="st"> </span><span class="kw">nchar</span>(states)
+char_freq &lt;-<span class="st"> </span><span class="kw">table</span>(num_chars)
+<span class="kw">barplot</span>(char_freq)</code></pre></div>
+<p><img src="data:image/png;base64,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" /></p>
+<h3 id="pasting-strings">Pasting strings</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">paste</span>(states[<span class="dv">1</span>:<span class="dv">5</span>], num_chars[<span class="dv">1</span>:<span class="dv">5</span>], <span class="dt">sep =</span> <span class="st">&quot; = &quot;</span>)</code></pre></div>
+<pre><code>## [1] &quot;Alabama = 7&quot;     &quot;Alaska = 6&quot;      &quot;Arizona = 7&quot;     &quot;Arkansas = 8&quot;   
+## [5] &quot;California = 10&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">paste</span>(states[<span class="dv">1</span>:<span class="dv">5</span>], <span class="dt">collapse =</span> <span class="st">&quot;&quot;</span>)</code></pre></div>
+<pre><code>## [1] &quot;AlabamaAlaskaArizonaArkansasCalifornia&quot;</code></pre>
+<h3 id="substrings">Substrings</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">first &lt;-<span class="st"> </span><span class="kw">substr</span>(states, <span class="dv">1</span>, <span class="dv">3</span>)
+last &lt;-<span class="st"> </span><span class="kw">substr</span>(states, num_chars<span class="dv">-2</span>, num_chars)
+first_last &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="kw">substr</span>(first, <span class="dv">1</span>, <span class="dv">1</span>), last)</code></pre></div>
+<p>First 3 letters:</p>
+<table>
+<tbody>
+<tr class="odd">
+<td align="left">Ala</td>
+</tr>
+<tr class="even">
+<td align="left">Ala</td>
+</tr>
+<tr class="odd">
+<td align="left">Ari</td>
+</tr>
+<tr class="even">
+<td align="left">Ark</td>
+</tr>
+<tr class="odd">
+<td align="left">Cal</td>
+</tr>
+<tr class="even">
+<td align="left">Col</td>
+</tr>
+</tbody>
+</table>
+<p><br> Last 3 letters:</p>
+<table>
+<tbody>
+<tr class="odd">
+<td align="left">ama</td>
+</tr>
+<tr class="even">
+<td align="left">ska</td>
+</tr>
+<tr class="odd">
+<td align="left">ona</td>
+</tr>
+<tr class="even">
+<td align="left">sas</td>
+</tr>
+<tr class="odd">
+<td align="left">nia</td>
+</tr>
+<tr class="even">
+<td align="left">ado</td>
+</tr>
+</tbody>
+</table>
+<p><br> First 1 and last 3 letters:</p>
+<table>
+<tbody>
+<tr class="odd">
+<td align="left">Aama</td>
+</tr>
+<tr class="even">
+<td align="left">Aska</td>
+</tr>
+<tr class="odd">
+<td align="left">Aona</td>
+</tr>
+<tr class="even">
+<td align="left">Asas</td>
+</tr>
+<tr class="odd">
+<td align="left">Cnia</td>
+</tr>
+<tr class="even">
+<td align="left">Cado</td>
+</tr>
+</tbody>
+</table>
+<h3 id="challenge">Challenge</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">state_list &lt;-<span class="st"> </span>function(x, char_count) {
+  result &lt;-<span class="st"> </span><span class="kw">list</span>()
+  for (i in <span class="kw">min</span>(char_count):<span class="kw">max</span>(char_count)) {
+    if (i %%<span class="st"> </span><span class="dv">2</span> ==<span class="st"> </span><span class="dv">0</span>) {
+      result[[<span class="kw">paste0</span>(i, <span class="st">&quot;-chars&quot;</span>, <span class="dt">collapse =</span> <span class="st">&quot;&quot;</span>)]] &lt;-<span class="st"> </span><span class="kw">substr</span>(<span class="kw">toupper</span>(x[char_count ==<span class="st"> </span>i]), <span class="dv">1</span>, i)
+    } else {
+      result[[<span class="kw">paste0</span>(i, <span class="st">&quot;-chars&quot;</span>, <span class="dt">collapse =</span> <span class="st">&quot;&quot;</span>)]] &lt;-<span class="st"> </span><span class="kw">substr</span>(<span class="kw">tolower</span>(x[char_count ==<span class="st"> </span>i]), <span class="dv">1</span>, i)
+    }
+  }
+  
+  <span class="kw">return</span>(result)
+}
+
+<span class="kw">state_list</span>(states, num_chars)</code></pre></div>
+<pre><code>## $`4-chars`
+## [1] &quot;IOWA&quot; &quot;OHIO&quot; &quot;UTAH&quot;
+## 
+## $`5-chars`
+## [1] &quot;idaho&quot; &quot;maine&quot; &quot;texas&quot;
+## 
+## $`6-chars`
+## [1] &quot;ALASKA&quot; &quot;HAWAII&quot; &quot;KANSAS&quot; &quot;NEVADA&quot; &quot;OREGON&quot;
+## 
+## $`7-chars`
+## [1] &quot;alabama&quot; &quot;arizona&quot; &quot;florida&quot; &quot;georgia&quot; &quot;indiana&quot; &quot;montana&quot; &quot;vermont&quot;
+## [8] &quot;wyoming&quot;
+## 
+## $`8-chars`
+##  [1] &quot;ARKANSAS&quot; &quot;COLORADO&quot; &quot;DELAWARE&quot; &quot;ILLINOIS&quot; &quot;KENTUCKY&quot; &quot;MARYLAND&quot;
+##  [7] &quot;MICHIGAN&quot; &quot;MISSOURI&quot; &quot;NEBRASKA&quot; &quot;NEW YORK&quot; &quot;OKLAHOMA&quot; &quot;VIRGINIA&quot;
+## 
+## $`9-chars`
+## [1] &quot;louisiana&quot; &quot;minnesota&quot; &quot;tennessee&quot; &quot;wisconsin&quot;
+## 
+## $`10-chars`
+## [1] &quot;CALIFORNIA&quot; &quot;NEW JERSEY&quot; &quot;NEW MEXICO&quot; &quot;WASHINGTON&quot;
+## 
+## $`11-chars`
+## [1] &quot;connecticut&quot; &quot;mississippi&quot;
+## 
+## $`12-chars`
+## [1] &quot;NORTH DAKOTA&quot; &quot;PENNSYLVANIA&quot; &quot;RHODE ISLAND&quot; &quot;SOUTH DAKOTA&quot;
+## 
+## $`13-chars`
+## [1] &quot;massachusetts&quot; &quot;new hampshire&quot; &quot;west virginia&quot;
+## 
+## $`14-chars`
+## [1] &quot;NORTH CAROLINA&quot; &quot;SOUTH CAROLINA&quot;</code></pre>
+<h2 id="converting-from-fahrenheit-degrees">Converting from Fahrenheit Degrees</h2>
+<h3 id="original-function">Original function</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">to_celsius &lt;-<span class="st"> </span>function(<span class="dt">x =</span> <span class="dv">1</span>) {
+  (x -<span class="st"> </span><span class="dv">32</span>) *<span class="st"> </span>(<span class="dv">5</span>/<span class="dv">9</span>)
+}
+
+to_kelvin &lt;-<span class="st"> </span>function(<span class="dt">x =</span> <span class="dv">1</span>) {
+  (x +<span class="st"> </span><span class="fl">459.67</span>) *<span class="st"> </span>(<span class="dv">5</span>/<span class="dv">9</span>)
+}
+
+to_reaumur &lt;-<span class="st"> </span>function(<span class="dt">x =</span> <span class="dv">1</span>) {
+  (x -<span class="st"> </span><span class="dv">32</span>) *<span class="st"> </span>(<span class="dv">4</span>/<span class="dv">9</span>)
+}
+
+to_rankine &lt;-<span class="st"> </span>function(<span class="dt">x =</span> <span class="dv">1</span>) {
+  x +<span class="st"> </span><span class="fl">459.67</span>
+}
+
+temp_convert &lt;-<span class="st"> </span>function(<span class="dt">x =</span> <span class="dv">1</span>, <span class="dt">to =</span> <span class="st">&quot;celsius&quot;</span>) {
+  switch(to,
+         <span class="st">&quot;celsius&quot;</span> =<span class="st"> </span><span class="kw">to_celsius</span>(x),
+         <span class="st">&quot;kelvin&quot;</span> =<span class="st"> </span><span class="kw">to_kelvin</span>(x),
+         <span class="st">&quot;reaumur&quot;</span> =<span class="st"> </span><span class="kw">to_reaumur</span>(x),
+         <span class="st">&quot;rankine&quot;</span> =<span class="st"> </span><span class="kw">to_rankine</span>(x))
+}</code></pre></div>
+<h3 id="fucntion-updates">Fucntion updates</h3>
+<p>When cases other than low are used to specify arguments the function fails to return a value. We can fix it by:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">temp_convert &lt;-<span class="st"> </span>function(<span class="dt">x =</span> <span class="dv">1</span>, <span class="dt">to =</span> <span class="st">&quot;celsius&quot;</span>) {
+  to &lt;-<span class="st"> </span><span class="kw">tolower</span>(to)
+  switch(to,
+         <span class="st">&quot;celsius&quot;</span> =<span class="st"> </span><span class="kw">to_celsius</span>(x),
+         <span class="st">&quot;kelvin&quot;</span> =<span class="st"> </span><span class="kw">to_kelvin</span>(x),
+         <span class="st">&quot;reaumur&quot;</span> =<span class="st"> </span><span class="kw">to_reaumur</span>(x),
+         <span class="st">&quot;rankine&quot;</span> =<span class="st"> </span><span class="kw">to_rankine</span>(x))
+}
+<span class="co"># Testing</span>
+<span class="kw">temp_convert</span>(<span class="dv">30</span>, <span class="st">'celsius'</span>)</code></pre></div>
+<pre><code>## [1] -1.111111</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">temp_convert</span>(<span class="dv">30</span>, <span class="st">'Celsius'</span>)</code></pre></div>
+<pre><code>## [1] -1.111111</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">temp_convert</span>(<span class="dv">30</span>, <span class="st">'CELSIUS'</span>)</code></pre></div>
+<pre><code>## [1] -1.111111</code></pre>
+<h2 id="names-of-files">Names of files</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># file names and dataset names</span>
+method1 &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;file&quot;</span>, <span class="dv">1</span>:<span class="dv">10</span>, <span class="st">&quot;.csv&quot;</span>)
+method2 &lt;-<span class="st"> </span><span class="kw">paste</span>(<span class="st">&quot;file&quot;</span>, <span class="dv">1</span>:<span class="dv">10</span>, <span class="st">&quot;.csv&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>)
+method3 &lt;-<span class="st"> </span>{
+  x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">rep</span>(<span class="st">&quot;file&quot;</span>, <span class="dv">10</span>), <span class="dv">1</span>:<span class="dv">10</span>, <span class="kw">rep</span>(<span class="st">&quot;.csv&quot;</span>, <span class="dv">10</span>))
+  z &lt;-<span class="st"> </span><span class="ot">NULL</span>
+  for(i in <span class="dv">1</span>:<span class="dv">10</span>) {
+    z[i] &lt;-<span class="st"> </span><span class="kw">paste0</span>(x[i], x[i +<span class="st"> </span><span class="dv">10</span>], x[i +<span class="st"> </span><span class="dv">20</span>])
+  }
+  z
+}
+
+dataset &lt;-<span class="st"> </span><span class="kw">gsub</span>(<span class="st">&quot;file&quot;</span>, <span class="st">&quot;dataset&quot;</span>, method1)</code></pre></div>
+<h2 id="using-function-cat">Using function <code>cat()</code></h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># name of output file</span>
+outfile &lt;-<span class="st"> &quot;output.txt&quot;</span>
+
+<span class="co"># modification</span>
+<span class="kw">cat</span>(<span class="st">'---</span><span class="ch">\n</span><span class="st">title: &quot;lab10 cat()&quot;</span><span class="ch">\n</span><span class="st">author: &quot;Sudarshan Srirangapatanam&quot;</span><span class="ch">\n</span><span class="st">date: &quot;11/3/17&quot;</span><span class="ch">\n</span><span class="st">output: html_document</span><span class="ch">\n</span><span class="st">---</span><span class="ch">\n\n</span><span class="st">'</span>, <span class="dt">file =</span> outfile)
+<span class="co"># writing to 'outfile.txt'</span>
+<span class="kw">cat</span>(<span class="st">&quot;This is the first line&quot;</span>, <span class="dt">file =</span> outfile, <span class="dt">append =</span> <span class="ot">TRUE</span>)
+<span class="co"># insert new line</span>
+<span class="kw">cat</span>(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>, <span class="dt">file =</span> outfile, <span class="dt">append =</span> <span class="ot">TRUE</span>)
+<span class="kw">cat</span>(<span class="st">&quot;A 2nd line&quot;</span>, <span class="dt">file =</span> <span class="st">&quot;output.txt&quot;</span>, <span class="dt">append =</span> <span class="ot">TRUE</span>)
+<span class="co"># insert 2 new lines</span>
+<span class="kw">cat</span>(<span class="st">&quot;</span><span class="ch">\n\n</span><span class="st">&quot;</span>, <span class="dt">file =</span> outfile, <span class="dt">append =</span> <span class="ot">TRUE</span>)
+<span class="kw">cat</span>(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">The quick brown fox jumps over the lazy dog</span><span class="ch">\n</span><span class="st">&quot;</span>,
+    <span class="dt">file =</span> outfile, <span class="dt">append =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<p>see <a href="./output.txt"><code>./output.txt</code></a> for output</p>
+<h2 id="valid-color-names">Valid Color Names</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">is_color &lt;-<span class="st"> </span>function(x) {
+  colors &lt;-<span class="st"> </span><span class="kw">colors</span>()
+  sum &lt;-<span class="st"> </span><span class="kw">sum</span>(colors ==<span class="st"> </span>x)
+  if(sum ==<span class="st"> </span><span class="dv">0</span>) {
+    <span class="kw">return</span>(<span class="ot">FALSE</span>)
+  } else {
+    <span class="kw">return</span>(<span class="ot">TRUE</span>)
+  }
+}
+<span class="co"># testing</span>
+<span class="kw">is_color</span>(<span class="st">'yellow'</span>)  <span class="co"># TRUE</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">is_color</span>(<span class="st">'blu'</span>)     <span class="co"># FALSE</span></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">is_color</span>(<span class="st">'turkuoise'</span>) <span class="co"># FALSE</span></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+<h3 id="plot-with-a-valid-color">Plot with a valid color</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">colplot &lt;-<span class="st"> </span>function(<span class="dt">col=</span><span class="st">&quot;&quot;</span>) {
+  if(<span class="kw">is_color</span>(col)) {
+    <span class="kw">return</span>(<span class="kw">plot</span>(<span class="dt">x =</span> <span class="dv">1</span>:<span class="dv">100</span>, <span class="dt">y =</span> <span class="kw">runif</span>(<span class="dv">100</span>), <span class="dt">main =</span> <span class="kw">paste</span>(<span class="st">&quot;Testing color&quot;</span>, col)))
+  } else{
+    <span class="co">#stop(paste(&quot;invalid color&quot;, col))</span>
+  }
+}
+
+<span class="co"># testing</span>
+<span class="co"># this stops with error message</span>
+<span class="kw">colplot</span>(<span class="st">'tomate'</span>)</code></pre></div>
+<pre><code>## NULL</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># this should plot</span>
+<span class="kw">colplot</span>(<span class="st">'tomato'</span>)</code></pre></div>
+<p><img src="data:image/png;base64,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" /></p>
+<h2 id="counting-number-of-vowels">Counting number of vowels</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">1</span>)
+letrs &lt;-<span class="st"> </span><span class="kw">sample</span>(letters, <span class="dt">size =</span> <span class="dv">100</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>)
+
+prep.letters &lt;-<span class="st"> </span>function(x) {
+  x &lt;-<span class="st"> </span><span class="kw">tolower</span>(x)
+  x &lt;-<span class="st"> </span><span class="kw">unlist</span>(<span class="kw">strsplit</span>(x, <span class="st">&quot;&quot;</span>))
+  <span class="kw">return</span>(x)
+}
+
+count.letters &lt;-<span class="st"> </span>function(x, <span class="dt">count_by =</span> <span class="st">&quot;abcd&quot;</span>) {
+  x &lt;-<span class="st"> </span><span class="kw">prep.letters</span>(x)
+  count_by &lt;-<span class="st"> </span><span class="kw">prep.letters</span>(count_by)
+  count &lt;-<span class="st"> </span><span class="ot">NULL</span>
+  for (i in <span class="dv">1</span>:<span class="kw">length</span>(count_by)) {
+    count[i] &lt;-<span class="st"> </span><span class="kw">sum</span>(x ==<span class="st"> </span>count_by[i])
+  }
+  <span class="kw">names</span>(count) &lt;-<span class="st"> </span>count_by
+  <span class="kw">return</span>(count)
+}
+
+format.counts &lt;-<span class="st"> </span>function(x) {
+  <span class="kw">return</span>(<span class="kw">paste</span>(<span class="kw">names</span>(x), <span class="st">&quot;:&quot;</span>, x))
+}
+
+
+
+<span class="kw">count.letters</span>(letrs, <span class="dt">count_by =</span> <span class="kw">c</span>(<span class="st">&quot;aeiou&quot;</span>))</code></pre></div>
+<pre><code>## a e i o u 
+## 2 2 6 2 8</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">count.letters</span>(letrs, <span class="dt">count_by =</span> <span class="kw">c</span>(<span class="st">&quot;bcdfghjklmnpqrstvwxyz&quot;</span>))</code></pre></div>
+<pre><code>## b c d f g h j k l m n p q r s t v w x y z 
+## 3 3 3 4 6 1 5 6 4 7 2 2 5 4 5 3 4 5 4 3 1</code></pre>
+<h3 id="number-of-letters-vowels-and-consonants">Number of letters, vowels, and consonants</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">count_letters &lt;-<span class="st"> </span>function(x) {
+  x &lt;-<span class="st"> </span><span class="kw">prep.letters</span>(x)
+  
+  letters &lt;-<span class="st"> </span><span class="kw">paste</span>(<span class="st">&quot;letters :&quot;</span>, <span class="kw">length</span>(x))
+  vowels &lt;-<span class="st"> </span><span class="kw">paste</span>(<span class="st">&quot;vowels :&quot;</span>, <span class="kw">sum</span>(<span class="kw">count.letters</span>(x, <span class="dt">count_by =</span> <span class="kw">c</span>(<span class="st">&quot;aeiou&quot;</span>))))
+  consonants &lt;-<span class="st"> </span><span class="kw">paste</span>(<span class="st">&quot;consonants :&quot;</span>, <span class="kw">sum</span>(<span class="kw">count.letters</span>(x, <span class="dt">count_by =</span> <span class="kw">c</span>(<span class="st">&quot;bcdfghjklmnpqrstvwxyz&quot;</span>))))
+  
+  <span class="kw">return</span>(<span class="kw">paste</span>(letters, vowels, consonants, <span class="dt">sep =</span> <span class="st">', '</span>))
+}
+
+<span class="kw">count_letters</span>(<span class="st">&quot;abcd&quot;</span>)</code></pre></div>
+<pre><code>## [1] &quot;letters : 4, vowels : 1, consonants : 3&quot;</code></pre>
+
+</body>
+</html>
