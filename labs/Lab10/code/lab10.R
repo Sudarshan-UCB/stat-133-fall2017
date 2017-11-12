@@ -66,7 +66,7 @@ state_list <- function(x, char_count) {
       result[[paste0(i, "-chars", collapse = "")]] <- substr(tolower(x[char_count == i]), 1, i)
     }
   }
-  
+
   return(result)
 }
 
@@ -211,11 +211,11 @@ count.letters(letrs, count_by = c("bcdfghjklmnpqrstvwxyz"))
 #' ### Number of letters, vowels, and consonants
 count_letters <- function(x) {
   x <- prep.letters(x)
-  
+
   letters <- paste("letters :", length(x))
   vowels <- paste("vowels :", sum(count.letters(x, count_by = c("aeiou"))))
   consonants <- paste("consonants :", sum(count.letters(x, count_by = c("bcdfghjklmnpqrstvwxyz"))))
-  
+
   return(paste(letters, vowels, consonants, sep = ', '))
 }
 
