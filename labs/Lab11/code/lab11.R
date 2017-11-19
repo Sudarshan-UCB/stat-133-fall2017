@@ -130,16 +130,101 @@ sbbox
 sf_map <- get_map(location = sbbox, maptype = "terrain", source = "google")
 ggmap(sf_map) + 
   geom_point(data = dat, 
-  mapping = aes(x = lon, y = lat), 
-  color = "red", alpha = 0.2, size = 1)
+    mapping = aes(x = lon, y = lat), 
+    color = "red", alpha = 0.2, size = 1)
 
 #' ## Let's look for specific types of food
 
 dat$optionaltext[1:3]
 foods <- dat$optionaltext[1:10]
-
 burros <- str_detect(foods, "B|burritos")
+burros
 
+foods <- dat$optionaltext
+burros <- str_detect(foods, "B|burritos")
+tacos <- str_detect(foods, "T|tacos")
+quesadillas <- str_detect(foods, "Q|quesadillas")
+
+burritos <- dat[burros,]
+lon <- dat[burros, lon]
+lat <- dat[burros, lat]
+
+ggmap(sf_map) +
+  geom_point(burritos, mapping = aes(x = lon, y = lat), col = "blue", alpha = 0.2, size = 1)
+
+#' ## Practice more Regex patterns
+
+animals <- c('dog', 'cat', 'bird', 'dolphin', 'lion',
+  'zebra', 'tiger', 'wolf', 'whale', 'eagle',
+  'pig', 'osprey', 'kangaroo', 'koala')
+
+grep('dog', animals)
+grep('dog', animals, value = TRUE)
+
+str_detect(animals, 'dog')
+str_extract(animals, 'dog')
+
+animals[str_detect(animals, 'dog')]
+
+#' **Your Turn**
+display <- function(x) {
+  animals[str_detect(animals, x)]
+}
+
+display("o*")
+display("o{0,1}")
+display("o{1,}")
+display("o{2}")
+display("o{1}(?!o|\\b)")
+display("[aeiou][aeiou]")
+display("[^aeiou]{2}")
+display("[^aeiou]{3}")
+display("^[a-z]{3}$")
+display("^[a-z]{4}$")
+
+#' **File Names**
+files <- c('sales1.csv', 'orders.csv', 'sales2.csv',
+  'sales3.csv', 'europe.csv', 'usa.csv', 'mex.csv',
+  'CA.csv', 'FL.csv', 'NY.csv', 'TX.csv',
+  'sales-europe.csv', 'sales-usa.csv', 'sales-mex.csv')
+
+display <- function(x, invert = FALSE) {
+  if (invert) {
+    result <- files[!str_detect(files, x)]
+  } else {
+    result <- files[str_detect(files, x)]
+  }
+  return(result)
+}
+
+display("\\d")
+display("\\D")
+display("^(?![A-Z])")
+display("[A-Z]")
+display("-")
+display("[\\-]", TRUE)
+str_replace_all(files, "\\.csv", "\\.txt")
+str_split(files, "\\.", simplify = TRUE)[,1]
+
+#' String handling functions
+split_chars <- function(x) {
+  str_split(x, "")[[1]]
+}
+
+split_chars('Go Bears!')
+split_chars('Expecto Patronum')
+
+reverse_chars <- function(x) {
+  split <- split_chars(x)
+  rev <- NULL
+  for (i in 1:length(split)) {
+    rev[i] <- split[length(split) - i + 1]
+  }
+  
+  return(paste0(rev, collapse = ""))
+}
+reverse_chars("gattaca")
+reverse_chars("Lumox Maxima")
 
 #/*
 knitr::spin("./lab10.R", knit = FALSE)
