@@ -1,4 +1,4 @@
-# Lab 11: Regular Expressions
+# Lab 10: Basics of strings manipulations
 
 This lab follows file structure as below
 
