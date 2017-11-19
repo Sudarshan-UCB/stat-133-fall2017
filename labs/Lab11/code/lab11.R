@@ -83,28 +83,26 @@ locs <- c(
 )
 lat_lon <- {
   x <- str_replace_all(locs, pattern = '\\(|\\)', replacement = '')
-  str_split(x, pattern = ',')
+  str_split(x, pattern = ',', simplify = TRUE)
 }
 
-lat <- lapply(lat_lon, function(x) x[1])
-lon <- lapply(lat_lon, function(x) x[2])
+lat <- lat_lon[,1]
+lon <- lat_lon[,2]
 
-latitude <- as.numeric(unlist(lat))
-longitude <- as.numeric(unlist(lon))
+latitude <- as.numeric(lat)
+longitude <- as.numeric(lon)
 
 get_lat <- function(x) {
   y <- str_replace_all(x, pattern = '\\(|\\)', replacement = '')
-  z <- str_split(y, pattern = ',')
+  z <- str_split(y, pattern = ',', simplify = TRUE)
 
-  lats <- lapply(z, function(x) x[1])
-  return(as.numeric(unlist(lats)))
+  return(as.numeric(z[,1]))
 }
 get_long <- function(x) {
   y <- str_replace_all(x, pattern = '\\(|\\)', replacement = '')
-  z <- str_split(y, pattern = ',')
+  z <- str_split(y, pattern = ',', simplify = TRUE)
 
-  longs <- lapply(z, function(x) x[2])
-  return(as.numeric(unlist(longs)))
+  return(as.numeric(z[,2]))
 }
 
 
@@ -146,8 +144,8 @@ tacos <- str_detect(foods, "T|tacos")
 quesadillas <- str_detect(foods, "Q|quesadillas")
 
 burritos <- dat[burros,]
-lon <- dat[burros, lon]
-lat <- dat[burros, lat]
+lon <- burritos$lon
+lat <- burritos$lat
 
 ggmap(sf_map) +
   geom_point(burritos, mapping = aes(x = lon, y = lat), col = "blue", alpha = 0.2, size = 1)
@@ -227,9 +225,8 @@ reverse_chars("gattaca")
 reverse_chars("Lumox Maxima")
 
 #/*
-knitr::spin("./lab10.R", knit = FALSE)
-rmarkdown::render("./lab10.R", output_format = "github_document", output_options = list(toc = TRUE))
-file.rename("./lab10.Rmd", "../report/lab10.Rmd")
-file.rename("./lab10.md", "../report/lab10.md")
-file.rename("./lab10.html", "../html/lab10.html")
+rmarkdown::render("./lab11.R", output_format = "github_document", output_options = list(toc = TRUE))
+file.rename("./lab11.Rmd", "../report/lab11.Rmd")
+file.rename("./lab11.md", "../report/lab11.md")
+file.rename("./lab11.html", "../html/lab11.html")
 #*/
